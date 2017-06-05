@@ -6,3 +6,6 @@ frontend/dist/
 frontend/dev/index.js
 
 backend/.idea/
+backend/build/
+backend/.gradle/
+backend/gradle/

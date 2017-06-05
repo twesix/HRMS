@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.vanging.hrms.persistence.models">
+    <class name="Profile" table="profile">
+        <id name="id" column="id" type="long">
+            <generator class="assigned">
+            </generator>
+        </id>
+
+        <property name="username" column="username" not-null="true" type="java.lang.String" />
+        <property name="pay_method" column="pay_method" not-null="true" type="java.lang.String" />
+        <property name="usertype" column="usertype" not-null="true" type="java.lang.String" />
+        <property name="mailing_address" column="mailing_address" not-null="true" type="java.lang.String" />
+        <property name="tel" column="tel" not-null="true" type="java.lang.String" />
+        <property name="hourly_rate" column="hourly_rate" not-null="true" type="java.lang.Float" />
+        <property name="salary" column="salary" not-null="true" type="java.lang.Float" />
+        <property name="commission_rate" column="commission_rate" not-null="true" type="java.lang.Float" />
+        <property name="hour_limit" column="hour_limit" not-null="true" type="int" />
+    </class>
+</hibernate-mapping>
