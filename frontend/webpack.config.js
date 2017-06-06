@@ -3,11 +3,15 @@ let path=require('path');
 
 module.exports=
     {
-        entry:'./src/index.js',
+        entry:
+            {
+                admin: './src/admin/index.js',
+                employee: './src/admin/index.js'
+            },
         output:
             {
                 path:path.resolve(__dirname,'./dev'),
-                filename:'index.js'
+                filename:'[name].js'
             },
         module:
             {

@@ -4,13 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <title>Vanging | Human Resource Management System</title>
 
-    <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Vanging | Employee Management System</title>
+    <style>
+        html,
+        body
+        {
+            width: 100%;
+            height:100%;
+            padding: 0;
+            margin: 0;
+        }
+        #app
+        {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #type_select
+        {
+            margin: 0;
+            padding: 3em;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+
+            border: 1px solid black;
+        }
+        .type-select-hint
+        {
+            width: 100%;
+            text-align: center;
+        }
+        .type-item
+        {
+            cursor: pointer;
+            font-size: 1.5em;
+            margin: 1em;
+        }
+    </style>
 </head>
 <body>
+
+<div id="app">
+    <div id="type_select">
+        <div class="type-select-hint">
+            <h2>选择用户类型</h2>
+        </div>
+        <div>
+            <a href="employee"><button class="type-item">普通雇员</button></a>
+            <a href="admin"><button class="type-item">管理员</button></a>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
