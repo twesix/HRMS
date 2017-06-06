@@ -17,14 +17,13 @@ public class Admin
         return !(administrator == null || ! administrator.getPassword().equals(password));
     }
 
-    public static void addUser
+    public static boolean addUser
             (
                     long id,
                     String password,
                     String username,
                     String pay_method,
                     String usertype,
-                    String mailing_address,
                     String tel,
                     float hourly_rate,
                     float salary,
@@ -45,16 +44,25 @@ public class Admin
         profile.setUsername(username);
         profile.setPay_method(pay_method);
         profile.setUsertype(usertype);
-        profile.setMailing_address(mailing_address);
         profile.setTel(tel);
         profile.setHourly_rate(hourly_rate);
         profile.setSalary(salary);
         profile.setCommission_rate(commission_rate);
         profile.setHour_limit(hour_limit);
 
-        transaction.begin();
-        session.save(auth);
-        session.save(profile);
-        transaction.commit();
+        try
+        {
+            transaction.begin();
+            session.save(auth);
+            session.save(profile);
+            transaction.commit();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            transaction.rollback();
+            return false;
+        }
+        return true;
     }
 }

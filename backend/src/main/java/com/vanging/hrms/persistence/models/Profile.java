@@ -6,7 +6,6 @@ public class Profile
     private String username;
     private String pay_method;
     private String usertype; // hour, salaried, commissioned
-    private String mailing_address;
     private String tel;
     private float hourly_rate;
     private float salary;
@@ -21,11 +20,11 @@ public class Profile
         this.username = username;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -43,14 +42,6 @@ public class Profile
 
     public void setUsertype(String usertype) {
         this.usertype = usertype;
-    }
-
-    public String getMailing_address() {
-        return mailing_address;
-    }
-
-    public void setMailing_address(String mailing_address) {
-        this.mailing_address = mailing_address;
     }
 
     public String getTel() {
