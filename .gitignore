@@ -2,8 +2,7 @@ docs/.idea/
 
 frontend/.idea/
 frontend/node_modules/
-frontend/dist/
-frontend/dev/index.js
+frontend/build/
 
 backend/.idea/
 backend/build/
