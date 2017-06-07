@@ -7,7 +7,7 @@ const user = new Vuex.Store
     {
         state:
             {
-                online: true,
+                online: false,
                 uid: null
             },
         mutations:
@@ -25,5 +25,11 @@ const user = new Vuex.Store
             }
     }
 );
+
+const uid = localStorage.getItem('uid');
+if(uid)
+{
+    user.commit('login', {uid: uid});
+}
 
 export default user;

@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "webpack --config webpack.dev.config.js",
+    "dev": "webpack --config webpack.dev.config.js --display-modules",
     "dll": "webpack --config webpack.dll.config.js",
+    "page": "webpack --config webpack.page.config.js",
     "build": "webpack --config webpack.build.config.js"
   },
   "dependencies": {

@@ -5,22 +5,25 @@
                 <div class="navbar-brand">
                     <p>Vanging</p>
                 </div>
+                <button type="button" class="navbar-toggle collapsed"
+                        data-toggle="collapse" data-target="#navbar_collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
             </div>
-            <div class="collapse navbar-collapse">
+            <div class="collapse navbar-collapse" id="navbar_collapse">
                 <ul class="nav navbar-nav navbar-right">
 
                     <li v-if="!online">
-                        <a href="#">登录</a>
+                        <a href="#">未登录</a>
                     </li>
 
-                    <li class="dropdown" v-if="online">
-                        <a href="#" data-toggle="dropdown"  class="dropdown-toggle">
-                            ${username}
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>退出</li>
-                        </ul>
+                    <li v-if="online">
+                        <a href="#">{{username}}</a>
+                    </li>
+                    <li v-if="online">
+                        <a href="#"><span class="text-danger">退出</span></a>
                     </li>
                 </ul>
             </div>
