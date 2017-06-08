@@ -19,6 +19,8 @@ public class Login extends HttpServlet
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+
+        System.out.println("request");
         String finalResponse;
 
         String id = request.getParameter("id");

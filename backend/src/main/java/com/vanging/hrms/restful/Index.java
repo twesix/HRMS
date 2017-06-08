@@ -15,7 +15,7 @@ public class Index extends HttpServlet
 
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    public void dooGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         String finalResponse = "ok, this is working !";
 
