@@ -15,19 +15,23 @@
                         </li>
                         <li @click="change_panel('system_report')" class="list-group-item"
                             :class="{ active:  panel === 'system_report'}">
-                            系统报告
+                            生成管理报告
                         </li>
                         <li @click="change_panel('employee_report')" class="list-group-item"
                             :class="{ active:  panel === 'employee_report'}">
-                            用户报告
+                            生成雇员报告
                         </li>
-                        <li @click="change_panel('maintain_employee_profile')" class="list-group-item"
-                            :class="{ active:  panel === 'maintain_employee_profile'}">
-                            维护雇员信息
+                        <li @click="change_panel('add_employee')" class="list-group-item"
+                            :class="{ active:  panel === 'add_employee'}">
+                            添加雇员
+                        </li>
+                        <li @click="change_panel('update_or_delete_employee')" class="list-group-item"
+                            :class="{ active:  panel === 'update_or_delete_employee'}">
+                            修改或删除雇员
                         </li>
                         <li @click="change_panel('settle_the_wage')" class="list-group-item"
                             :class="{ active:  panel === 'settle_the_wage'}">
-                            运行工资结算系统
+                            工资结算
                         </li>
                     </ul>
                 </div>
@@ -35,8 +39,10 @@
                     <login v-show=" panel === 'login' "></login>
                     <system_report v-show=" panel === 'system_report' "></system_report>
                     <employee_report v-show=" panel === 'employee_report' "></employee_report>
-                    <maintain_employee_profile v-show=" panel === 'maintain_employee_profile' "></maintain_employee_profile>
+                    <update_or_delete_employee v-show=" panel === 'update_or_delete_employee' ">
+                    </update_or_delete_employee>
                     <settle_the_wage v-show=" panel === 'settle_the_wage' "></settle_the_wage>
+                    <add_employee v-show=" panel === 'add_employee' "></add_employee>
                 </div>
             </div>
         </div>
@@ -47,8 +53,9 @@
     import login from './panels/login.vue';
     import system_report from './panels/system_report.vue';
     import employee_report from './panels/employee_report.vue';
-    import maintain_employee_profile from './panels/maintain_employee_profile.vue';
+    import update_or_delete_employee from './panels/update_or_delete_employee.vue';
     import settle_the_wage from './panels/settle_the_wage.vue';
+    import add_employee from './panels/add_employee.vue';
     export default
         {
             data: function ()
@@ -63,8 +70,9 @@
                     login,
                     system_report,
                     employee_report,
-                    maintain_employee_profile,
-                    settle_the_wage
+                    update_or_delete_employee,
+                    settle_the_wage,
+                    add_employee,
                 },
             methods:
                 {
@@ -91,9 +99,12 @@
         padding: 0;
         margin: 0;
     }
-
+    .list-group-item
+    {
+        cursor: pointer;
+    }
     #panel
     {
-        border: 1px solid black;
+        /*border: 1px solid black;*/
     }
 </style>
