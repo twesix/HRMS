@@ -17,7 +17,7 @@ public class Admin
         return !(administrator == null || ! administrator.getPassword().equals(password));
     }
 
-    public static boolean addUser
+    public static boolean addEmployee
             (
                     long id,
                     String password,

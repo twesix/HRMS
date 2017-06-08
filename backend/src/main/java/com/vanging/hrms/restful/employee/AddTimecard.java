@@ -1,6 +1,4 @@
-package com.vanging.hrms.restful;
-
-import com.alibaba.fastjson.JSON;
+package com.vanging.hrms.restful.employee;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class Login extends HttpServlet
+public class AddTimecard extends HttpServlet
 {
 
     public void init()
@@ -19,19 +17,7 @@ public class Login extends HttpServlet
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String finalResponse;
-
-        String id = request.getParameter("id");
-        String password = request.getParameter("password");
-
-        if(id == null || password == null)
-        {
-            finalResponse = "error";
-        }
-        else
-        {
-            finalResponse = "ok";
-        }
+        String finalResponse = "employee / add timecard";
 
         response.setHeader("Content-Type", "text/plain");
         PrintWriter out = response.getWriter();

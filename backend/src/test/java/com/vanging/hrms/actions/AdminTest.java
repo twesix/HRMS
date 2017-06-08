@@ -30,7 +30,7 @@ public class AdminTest
     @Test
     public void addUser() throws Exception
     {
-        boolean result = Admin.addUser(123, "123", "123", "", "hour", "123", 0, 0, 0, 0);
+        boolean result = Admin.addEmployee(123, "123", "123", "", "hour", "123", 0, 0, 0, 0);
         Assert.assertTrue(result);
     }
 }
