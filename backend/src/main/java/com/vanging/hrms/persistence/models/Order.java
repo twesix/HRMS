@@ -2,8 +2,10 @@ package com.vanging.hrms.persistence.models;
 
 public class Order
 {
-    private long employee_id;
     private long order_id;
+
+    // to be assigned
+    private long employee_id;
     private String customer_point_of_contact;
     private String customer_billing_address;
     private long products_purchased;

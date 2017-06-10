@@ -7,7 +7,7 @@ const backend = new Vuex.Store
     {
         state:
             {
-                base_url: '//localhost:8080/'
+                base_url: '//localhost:8080'
             },
         mutations:
             {

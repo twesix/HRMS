@@ -5,8 +5,8 @@ public class Timecard
     private long project_id;
     private long employee_id;
     private String datetime;
-    private int from;
-    private int to;
+    private int start_time;
+    private int end_time;
 
     public long getEmployee_id() {
         return employee_id;
@@ -24,20 +24,20 @@ public class Timecard
         this.datetime = datetime;
     }
 
-    public int getFrom() {
-        return from;
+    public int getStart_time() {
+        return start_time;
     }
 
-    public void setFrom(int from) {
-        this.from = from;
+    public void setStart_time(int from) {
+        this.start_time = from;
     }
 
-    public int getTo() {
-        return to;
+    public int getEnd_time() {
+        return end_time;
     }
 
-    public void setTo(int to) {
-        this.to = to;
+    public void setEnd_time(int to) {
+        this.end_time = to;
     }
 
     public long getProject_id() {

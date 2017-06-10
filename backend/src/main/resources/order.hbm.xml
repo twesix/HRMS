@@ -4,7 +4,7 @@
 <hibernate-mapping package="com.vanging.hrms.persistence.models">
     <class name="Order" table="the_order">
         <id name="order_id" column="order_id" type="long">
-            <generator class="assigned">
+            <generator class="native">
             </generator>
         </id>
 

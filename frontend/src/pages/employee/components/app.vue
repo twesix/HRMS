@@ -21,9 +21,17 @@
                             :class="{ active:  panel === 'pay_method'}">
                             选择付款方式
                         </li>
-                        <li @click="change_panel('maintain_order')" class="list-group-item"
-                            :class="{ active:  panel === 'maintain_order'}">
-                            维护采购订单
+                        <li @click="change_panel('add_order')" class="list-group-item"
+                            :class="{ active:  panel === 'add_order'}">
+                            创建订单
+                        </li>
+                        <li @click="change_panel('update_order')" class="list-group-item"
+                            :class="{ active:  panel === 'update_order'}">
+                            维护订单
+                        </li>
+                        <li @click="change_panel('delete_order')" class="list-group-item"
+                            :class="{ active:  panel === 'delete_order'}">
+                            删除订单
                         </li>
                     </ul>
                 </div>
@@ -38,7 +46,9 @@
                             <login v-show=" panel === 'login' "></login>
                             <timecard v-show=" panel === 'timecard' "></timecard>
                             <pay_method v-show=" panel === 'pay_method' "></pay_method>
-                            <maintain_order v-show=" panel === 'maintain_order' "></maintain_order>
+                            <add_order v-show=" panel === 'add_order' "></add_order>
+                            <update_order v-show=" panel === 'update_order' "></update_order>
+                            <delete_order v-show=" panel === 'delete_order' "></delete_order>
                         </div>
                     </div>
 
@@ -52,7 +62,10 @@
     import login from './panels/login.vue';
     import timecard from './panels/timecard.vue';
     import pay_method from './panels/pay_method.vue';
-    import maintain_order from './panels/maintain_order.vue';
+    import update_order from './panels/update_order.vue';
+    import add_order from './panels/add_order.vue';
+    import delete_order from './panels/delete_order.vue';
+
     export default
     {
         data: function ()
@@ -67,7 +80,9 @@
                 login,
                 timecard,
                 pay_method,
-                maintain_order,
+                update_order,
+                add_order,
+                delete_order,
             },
         methods:
             {

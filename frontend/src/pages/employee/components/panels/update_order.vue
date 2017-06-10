@@ -1,6 +1,13 @@
 <template>
     <form @submit.prevent="submit" class="form">
         <div class="form-group">
+            <label for="order_id">
+                订单id
+            </label>
+            <input v-model="order_id" id="order_id"
+                   type="text" class="form-control" required>
+        </div>
+        <div class="form-group">
             <label for="customer_point_of_contact">
                 customer point of contact
             </label>
@@ -28,7 +35,7 @@
             <input v-model="datetime" id="datetime"
                    type="datetime-local" class="form-control" required>
         </div>
-        <button class="btn btn-default form-control" type="submit">提交</button>
+        <button class="btn btn-default form-control" type="submit">更新订单</button>
     </form>
 </template>
 <script>
@@ -36,13 +43,20 @@
     {
         data: function () {
             return {
+                order_id: null,
                 customer_point_of_contact: null,
                 customer_billing_address: null,
                 products_purchased: null,
                 datetime: null,
             };
         },
-        components: {},
+        computed:
+            {
+                request_url: function()
+                {
+                    return `${this.$store.state.backend.base_url}/update_order`;
+                }
+            },
         methods:
             {
                 submit: function()

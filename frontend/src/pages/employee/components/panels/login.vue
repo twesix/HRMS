@@ -12,7 +12,7 @@
             </label>
             <input v-model="login_password" id="login_password" type="password" class="form-control" required>
         </div>
-        <button class="btn btn-default form-control" type="submit">Login</button>
+        <button class="btn btn-default form-control" type="submit">登录</button>
     </form>
 </template>
 <script>
@@ -24,12 +24,18 @@
                 login_password: null,
             };
         },
-        components: {},
+        computed:
+            {
+                request_url: function()
+                {
+                    return`${this.$store.state.backend.base_url}/login?account=${this.login_account}&password=${this.login_password}`;
+                }
+            },
         methods:
             {
                 login: function()
                 {
-
+                    console.log(this.request_url);
                 }
             }
     }
