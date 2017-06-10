@@ -7,6 +7,9 @@ const vendors =
         'jquery',
         'bootstrap.css',
         'bootstrap.js',
+        'vue',
+        'vuex',
+        'vue-router'
     ];
 
 module.exports =

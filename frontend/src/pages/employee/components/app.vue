@@ -27,11 +27,21 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-sm-9" id="panel">
-                    <login v-show=" panel === 'login' "></login>
-                    <timecard v-show=" panel === 'timecard' "></timecard>
-                    <pay_method v-show=" panel === 'pay_method' "></pay_method>
-                    <maintain_order v-show=" panel === 'maintain_order' "></maintain_order>
+                <div class="col-sm-9">
+                    <div id="panel" class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                雇员
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <login v-show=" panel === 'login' "></login>
+                            <timecard v-show=" panel === 'timecard' "></timecard>
+                            <pay_method v-show=" panel === 'pay_method' "></pay_method>
+                            <maintain_order v-show=" panel === 'maintain_order' "></maintain_order>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -84,9 +94,12 @@
         padding: 0;
         margin: 0;
     }
-
+    .list-group-item
+    {
+        cursor: pointer;
+    }
     #panel
     {
-        border: 1px solid black;
+        /*border: 1px solid black;*/
     }
 </style>
