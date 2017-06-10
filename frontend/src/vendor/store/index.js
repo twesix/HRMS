@@ -8,6 +8,7 @@ import backend from './stores/backend.js'
 const store = new Vuex.Store
 (
     {
+        namespaced: true,
         modules:
             {
                 user,

@@ -5,7 +5,7 @@
                 <label for="profile_id">
                     雇员Id
                 </label>
-                <input id="profile_id" class="form-control" type="text" required>
+                <input v-model="id" id="profile_id" class="form-control" type="text" required>
             </div>
             <button class="btn btn-default form-control">查询</button>
         </form>
@@ -14,18 +14,18 @@
         <hr>
         <br>
         <br>
-        <form @submit.prevent="login" class="form">
+        <form @submit.prevent="update" class="form">
             <div class="form-group">
                 <label for="profile_username">
                     雇员姓名
                 </label>
-                <input id="profile_username" class="form-control" type="text" required>
+                <input v-model="username" id="profile_username" class="form-control" type="text" required>
             </div>
             <div class="form-group">
                 <label for="profile_usertype">
                     雇员类型
                 </label>
-                <select id="profile_usertype" class="form-control" required>
+                <select v-model="usertype" id="profile_usertype" class="form-control" required>
                     <option value="hour">小时</option>
                     <option value="salary">受薪</option>
                     <option value="commission">委托</option>
@@ -35,31 +35,31 @@
                 <label for="profile_tel">
                     电话号码
                 </label>
-                <input id="profile_tel" class="form-control" type="text" required>
+                <input v-model="tel" id="profile_tel" class="form-control" type="text" required>
             </div>
             <div class="form-group">
                 <label for="profile_salary_per_hour">
                     小时薪资
                 </label>
-                <input id="profile_salary_per_hour" class="form-control" type="number" required>
+                <input v-model="salary_per_hour" id="profile_salary_per_hour" class="form-control" type="number" required>
             </div>
             <div class="form-group">
                 <label for="profile_salary_fixed">
                     固定薪资
                 </label>
-                <input id="profile_salary_fixed" class="form-control" type="number" required>
+                <input v-model="salary_fixed" id="profile_salary_fixed" class="form-control" type="number" required>
             </div>
             <div class="form-group">
                 <label for="profile_salary_rate">
                     佣金率
                 </label>
-                <input id="profile_salary_rate" class="form-control" type="number" required>
+                <input v-model="salary_rate" id="profile_salary_rate" class="form-control" type="number" required>
             </div>
             <div class="form-group">
-                <label for="profile_hor_limit">
+                <label for="profile_hour_limit">
                     小时限制
                 </label>
-                <input id="profile_hor_limit" class="form-control" type="number" required>
+                <input v-model="hour_limit" id="profile_hour_limit" class="form-control" type="number" required>
             </div>
             <button class="btn btn-default form-control" type="submit">更新雇员信息</button>
         </form>
@@ -77,22 +77,45 @@
     export default
     {
         data: function () {
-            return {};
+            return {
+                id: null,
+                username: 0,
+                usertype: 0,
+                tel: 0,
+                salary_per_hour: 0,
+                salary_fixed: 0,
+                salary_rate: 0,
+                hour_limit: 0,
+            };
         },
-        components: {},
+        computed:
+            {
+                request_url_of_update: function()
+                {
+                    return`${this.$store.state.backend.base_url}/update_employee?id=${this.id}&username=${this.username}&usertype=${this.usertype}&tel=${this.tel}&salary_per_hour=${this.salary_per_hour}&salary_fixed=${this.salary_fixed}&salary_rate=${this.salary_rate}&hour_limit=${this.hour_limit}`;
+                },
+                request_url_of_query: function()
+                {
+                    return`${this.$store.state.backend.base_url}/query_employee?id=${this.id}`;
+                },
+                request_url_of_delete: function()
+                {
+                    return`${this.$store.state.backend.base_url}/delete_employee?id=${this.id}`;
+                }
+            },
         methods:
             {
-                login: function()
+                update: function()
                 {
-
+                    console.log(this.request_url_of_update);
                 },
                 query: function()
                 {
-
+                    console.log(this.request_url_of_query);
                 },
                 remove: function()
                 {
-
+                    console.log(this.request_url_of_delete);
                 }
             }
     }

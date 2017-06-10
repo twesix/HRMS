@@ -13,36 +13,45 @@
                             :class="{ active:  panel === 'login'}">
                             登录
                         </li>
-                        <li @click="change_panel('system_report')" class="list-group-item"
+                        <li v-if="online" @click="change_panel('system_report')" class="list-group-item"
                             :class="{ active:  panel === 'system_report'}">
                             生成管理报告
                         </li>
-                        <li @click="change_panel('employee_report')" class="list-group-item"
+                        <li v-if="online" @click="change_panel('employee_report')" class="list-group-item"
                             :class="{ active:  panel === 'employee_report'}">
                             生成雇员报告
                         </li>
-                        <li @click="change_panel('add_employee')" class="list-group-item"
+                        <li v-if="online" @click="change_panel('add_employee')" class="list-group-item"
                             :class="{ active:  panel === 'add_employee'}">
                             添加雇员
                         </li>
-                        <li @click="change_panel('update_or_delete_employee')" class="list-group-item"
+                        <li v-if="online" @click="change_panel('update_or_delete_employee')" class="list-group-item"
                             :class="{ active:  panel === 'update_or_delete_employee'}">
                             修改或删除雇员
                         </li>
-                        <li @click="change_panel('settle_the_wage')" class="list-group-item"
+                        <li v-if="online" @click="change_panel('settle_the_wage')" class="list-group-item"
                             :class="{ active:  panel === 'settle_the_wage'}">
                             工资结算
                         </li>
                     </ul>
                 </div>
-                <div class="col-sm-9" id="panel">
-                    <login v-show=" panel === 'login' "></login>
-                    <system_report v-show=" panel === 'system_report' "></system_report>
-                    <employee_report v-show=" panel === 'employee_report' "></employee_report>
-                    <update_or_delete_employee v-show=" panel === 'update_or_delete_employee' ">
-                    </update_or_delete_employee>
-                    <settle_the_wage v-show=" panel === 'settle_the_wage' "></settle_the_wage>
-                    <add_employee v-show=" panel === 'add_employee' "></add_employee>
+                <div class="col-sm-9">
+                    <div id="panel" class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                管理员
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <login v-show=" panel === 'login' "></login>
+                            <system_report v-show=" panel === 'system_report' "></system_report>
+                            <employee_report v-show=" panel === 'employee_report' "></employee_report>
+                            <update_or_delete_employee v-show=" panel === 'update_or_delete_employee' ">
+                            </update_or_delete_employee>
+                            <settle_the_wage v-show=" panel === 'settle_the_wage' "></settle_the_wage>
+                            <add_employee v-show=" panel === 'add_employee' "></add_employee>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,6 +82,13 @@
                     update_or_delete_employee,
                     settle_the_wage,
                     add_employee,
+                },
+            computed:
+                {
+                    online: function()
+                    {
+                        return this.$store.state.user.online;
+                    }
                 },
             methods:
                 {

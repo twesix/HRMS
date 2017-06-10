@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="login" class="form">
+    <form @submit.prevent="submit" class="form">
         <div class="form-group">
             <label for="pay_method">
                 支付方式
@@ -28,7 +28,20 @@
                 detail: null,
             };
         },
-        components: {}
+        computed:
+            {
+                request_url: function()
+                {
+                    return`${this.$store.state.backend.base_url}/set_pay_method?pay_method=${this.pay_method}&detail=${this.detail}`;
+                }
+            },
+        methods:
+            {
+                submit: function()
+                {
+                    console.log(this.request_url);
+                }
+            }
     }
 </script>
 <style scoped>

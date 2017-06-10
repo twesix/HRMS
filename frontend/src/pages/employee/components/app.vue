@@ -51,7 +51,6 @@
                             <delete_order v-show=" panel === 'delete_order' "></delete_order>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

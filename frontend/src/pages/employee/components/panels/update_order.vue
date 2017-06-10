@@ -19,21 +19,14 @@
                 customer billing address
             </label>
             <input v-model="customer_billing_address" id="customer_billing_address"
-                   type="password" class="form-control" required>
+                   type="text" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="products_purchased">
                 products purchased
             </label>
             <input v-model="products_purchased" id="products_purchased"
-                   type="password" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="datetime">
-                date time
-            </label>
-            <input v-model="datetime" id="datetime"
-                   type="datetime-local" class="form-control" required>
+                   type="text" class="form-control" required>
         </div>
         <button class="btn btn-default form-control" type="submit">更新订单</button>
     </form>
@@ -47,21 +40,20 @@
                 customer_point_of_contact: null,
                 customer_billing_address: null,
                 products_purchased: null,
-                datetime: null,
             };
         },
         computed:
             {
                 request_url: function()
                 {
-                    return `${this.$store.state.backend.base_url}/update_order`;
+                    return`${this.$store.state.backend.base_url}/update_order?order_id=${this.order_id}&customer_point_of_contact=${this.customer_point_of_contact}&customer_billing_address=${this.customer_billing_address}&products_purchased=${this.products_purchased}`;
                 }
             },
         methods:
             {
                 submit: function()
                 {
-
+                    console.log(this.request_url);
                 }
             }
     }

@@ -10,13 +10,13 @@
             <label for="start_time">
                 开始时间
             </label>
-            <input v-model="start_time" id="start_time" type="password" class="form-control" required>
+            <input v-model="start_time" id="start_time" type="text" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="end_time">
                 结束时间
             </label>
-            <input v-model="end_time" id="end_time" type="password" class="form-control" required>
+            <input v-model="end_time" id="end_time" type="text" class="form-control" required>
         </div>
         <button class="btn btn-default form-control" type="submit">提交</button>
     </form>
@@ -31,12 +31,18 @@
                 end_time: null
             };
         },
-        components: {},
+        computed:
+            {
+                request_url: function()
+                {
+                    return`${this.$store.state.backend.base_url}/add_timecard?project_id=${this.project_id}&start_time=${this.start_time}&end_time=${this.end_time}`;
+                }
+            },
         methods:
             {
                 submit: function()
                 {
-
+                    console.log(this.request_url);
                 }
             }
     }

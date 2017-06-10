@@ -12,14 +12,14 @@
                 customer billing address
             </label>
             <input v-model="customer_billing_address" id="customer_billing_address"
-                   type="password" class="form-control" required>
+                   type="text" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="products_purchased">
                 products purchased
             </label>
             <input v-model="products_purchased" id="products_purchased"
-                   type="password" class="form-control" required>
+                   type="text" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="datetime">
@@ -46,14 +46,14 @@
             {
                 request_url: function()
                 {
-                    return `${this.$store.state.backend.base_url}/add_order`;
+                    return `${this.$store.state.backend.base_url}/add_order?customer_point_of_contact=${this.customer_point_of_contact}&customer_billing_address=${this.customer_billing_address}&products_purchased=${this.products_purchased}&datetime=${this.datetime}`;
                 }
             },
         methods:
             {
                 submit: function()
                 {
-
+                    console.log(this.request_url);
                 }
             }
     }

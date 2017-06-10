@@ -10,8 +10,13 @@
             {
                 return {};
             },
-            components:
-                {}
+            generated:
+                {
+                    request_url: function()
+                    {
+                        return `${this.$store.state.backend.base_url}`;
+                    }
+                },
         }
 </script>
 <style scoped>
