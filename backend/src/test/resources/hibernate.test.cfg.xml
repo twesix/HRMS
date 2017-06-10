@@ -14,8 +14,12 @@
         <property name="format_sql">true</property>
         <property name="hbm2ddl.auto">create</property>
 
-        <mapping resource="auth.hbm.xml" />
         <mapping resource="administrator.hbm.xml" />
+        <mapping resource="auth.hbm.xml" />
+        <mapping resource="order.hbm.xml" />
+        <mapping resource="payroll.hbm.xml" />
         <mapping resource="profile.hbm.xml" />
+        <mapping resource="project.hbm.xml" />
+        <mapping resource="timecard.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

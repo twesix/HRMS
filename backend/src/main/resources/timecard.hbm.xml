@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.vanging.hrms.persistence.models">
+    <class name="Timecard" table="timecard">
+        <id name="project_id" column="project_id" type="long">
+            <generator class="assigned">
+            </generator>
+        </id>
+
+        <property name="employee_id" column="employee_id" not-null="true" type="long" />
+        <property name="datetime" column="submit_datetime" not-null="true" type="java.lang.String" />
+        <property name="from" column="from_hour" not-null="true" type="int" />
+        <property name="to" column="to_hour" not-null="true" type="int" />
+    </class>
+</hibernate-mapping>

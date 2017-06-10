@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.vanging.hrms.persistence.models">
+    <class name="Payroll" table="payroll">
+        <id name="id" column="id" type="long">
+            <generator class="assigned">
+            </generator>
+        </id>
+
+        <property name="employee_id" column="employee_id" not-null="true" type="long" />
+        <property name="amount" column="payroll_amount" not-null="true" type="long" />
+        <property name="settled" column="settled" not-null="true" type="boolean" />
+        <property name="settle_time" column="settle_time" not-null="true" type="java.lang.String" />
+        <property name="grant_time" column="grant_time" not-null="false" type="java.lang.String" />
+    </class>
+</hibernate-mapping>
