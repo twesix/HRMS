@@ -1,6 +1,7 @@
 package com.vanging.hrms.restful.admin;
 
 import com.alibaba.fastjson.JSON;
+import com.vanging.hrms.actions.Admin;
 import com.vanging.hrms.persistence.Persistence;
 import com.vanging.hrms.persistence.models.Administrator;
 import org.hibernate.Session;
@@ -15,20 +16,6 @@ import java.io.PrintWriter;
 
 public class Login extends HttpServlet
 {
-    private Session session = null;
-    private Transaction transaction = null;
-
-    public void init()
-    {
-        session = Persistence.getSession();
-        transaction = session.getTransaction();
-    }
-
-    @Override
-    public void destroy()
-    {
-        session.close();
-    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -45,22 +32,13 @@ public class Login extends HttpServlet
         }
         else
         {
-//            Administrator administrator = session.get(Administrator.class, (int)Float.parseFloat(id));
-            Administrator administrator = session.get(Administrator.class, id);
-            if(administrator == null)
+            if(Admin.login((long)Float.parseFloat(id), password))
             {
-                finalResponse = "id_not_exist";
+                finalResponse = "ok";
             }
             else
             {
-                if(administrator.getPassword().equals(password))
-                {
-                    finalResponse = "ok";
-                }
-                else
-                {
-                    finalResponse = "password_not_correct";
-                }
+                finalResponse = "error";
             }
         }
 

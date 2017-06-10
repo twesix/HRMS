@@ -72,12 +72,30 @@
     <!--  ;;;;;;;;;;;; employee ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
 
     <servlet>
+        <servlet-name>employee/add_order</servlet-name>
+        <servlet-class>com.vanging.hrms.restful.employee.AddOrder</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>employee/add_order</servlet-name>
+        <url-pattern>/employee/add_order</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>employee/add_timecard</servlet-name>
         <servlet-class>com.vanging.hrms.restful.employee.AddTimecard</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>employee/add_timecard</servlet-name>
         <url-pattern>/employee/add_timecard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>employee/delete_order</servlet-name>
+        <servlet-class>com.vanging.hrms.restful.employee.DeleteOrder</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>employee/delete_order</servlet-name>
+        <url-pattern>/employee/delete_order</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -90,21 +108,21 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>employee/maintain_order</servlet-name>
-        <servlet-class>com.vanging.hrms.restful.employee.MaintainOrder</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>employee/maintain_order</servlet-name>
-        <url-pattern>/employee/maintain_order</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>employee/set_pay_method</servlet-name>
         <servlet-class>com.vanging.hrms.restful.employee.SetPayMethod</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>employee/set_pay_method</servlet-name>
         <url-pattern>/employee/set_pay_method</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>employee/update_order</servlet-name>
+        <servlet-class>com.vanging.hrms.restful.employee.UpdateOrder</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>employee/update_order</servlet-name>
+        <url-pattern>/employee/update_order</url-pattern>
     </servlet-mapping>
 
 </web-app>

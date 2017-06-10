@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class MaintainOrder extends HttpServlet
+public class UpdateOrder extends HttpServlet
 {
 
     public void init()
@@ -17,7 +17,7 @@ public class MaintainOrder extends HttpServlet
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String finalResponse = "employee / maintain order";
+        String finalResponse = "employee / update order";
 
         response.setHeader("Content-Type", "text/plain");
         PrintWriter out = response.getWriter();
