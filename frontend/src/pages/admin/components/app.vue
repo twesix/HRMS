@@ -10,27 +10,27 @@
                 <div class="col-sm-3">
                     <ul class="list-group">
                         <li @click="change_panel('login')" class="list-group-item"
-                            :class="{ active:  panel === 'login'}">
+                            :class="{ active:  panel === 'login', disabled: online}">
                             登录
                         </li>
-                        <li v-if="online" @click="change_panel('system_report')" class="list-group-item"
-                            :class="{ active:  panel === 'system_report'}">
+                        <li  @click="change_panel('system_report')" class="list-group-item"
+                            :class="{ active:  panel === 'system_report', disabled: !online} ">
                             生成管理报告
                         </li>
-                        <li v-if="online" @click="change_panel('employee_report')" class="list-group-item"
-                            :class="{ active:  panel === 'employee_report'}">
+                        <li @click="change_panel('employee_report')" class="list-group-item"
+                            :class="{ active:  panel === 'employee_report', disabled: !online}">
                             生成雇员报告
                         </li>
-                        <li v-if="online" @click="change_panel('add_employee')" class="list-group-item"
-                            :class="{ active:  panel === 'add_employee'}">
+                        <li @click="change_panel('add_employee')" class="list-group-item"
+                            :class="{ active:  panel === 'add_employee', disabled: !online}">
                             添加雇员
                         </li>
-                        <li v-if="online" @click="change_panel('update_or_delete_employee')" class="list-group-item"
-                            :class="{ active:  panel === 'update_or_delete_employee'}">
+                        <li @click="change_panel('update_or_delete_employee')" class="list-group-item"
+                            :class="{ active:  panel === 'update_or_delete_employee', disabled: !online}">
                             修改或删除雇员
                         </li>
-                        <li v-if="online" @click="change_panel('settle_the_wage')" class="list-group-item"
-                            :class="{ active:  panel === 'settle_the_wage'}">
+                        <li @click="change_panel('settle_the_wage')" class="list-group-item"
+                            :class="{ active:  panel === 'settle_the_wage', disabled: !online}">
                             工资结算
                         </li>
                     </ul>
@@ -43,7 +43,7 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <login v-show=" panel === 'login' "></login>
+                            <login v-show=" panel === 'login' && !online "></login>
                             <system_report v-show=" panel === 'system_report' "></system_report>
                             <employee_report v-show=" panel === 'employee_report' "></employee_report>
                             <update_or_delete_employee v-show=" panel === 'update_or_delete_employee' ">
@@ -96,7 +96,15 @@
                     {
                         this.panel = panel_name;
                     }
+                },
+            mounted: function()
+            {
+                const uid = localStorage.getItem('admin/uid');
+                if(uid)
+                {
+                    this.$store.commit('user/login', {uid: uid});
                 }
+            }
         }
 </script>
 <style scoped>

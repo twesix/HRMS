@@ -5,7 +5,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
-import store from '../../vendor/store/index.js';
+import store from './stores/index.js';
 
 import root from './components/app.vue';
 

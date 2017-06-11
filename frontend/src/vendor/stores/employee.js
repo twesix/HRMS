@@ -1,10 +1,6 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-Vue.use(Vuex);
-
-const user = new Vuex.Store
-(
+const user =
     {
+        namespaced: true,
         state:
             {
                 online: false,
@@ -15,21 +11,16 @@ const user = new Vuex.Store
                 login: function(state, payload)
                 {
                     state.online = true;
+                    localStorage.setItem('employee/uid', payload.uid);
                     state.uid = payload.uid;
                 },
-                logout: function(state)
+                logout: function(state, payload)
                 {
                     state.online = false;
-                    state.uid = null
+                    state.uid = null;
+                    localStorage.removeItem('employee/uid');
                 }
             }
-    }
-);
-
-const uid = localStorage.getItem('uid');
-if(uid)
-{
-    user.commit('login', {uid: uid});
-}
+    };
 
 export default user;

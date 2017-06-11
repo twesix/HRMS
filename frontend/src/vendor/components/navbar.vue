@@ -15,14 +15,14 @@
             <div class="collapse navbar-collapse" id="navbar_collapse">
                 <ul class="nav navbar-nav navbar-right">
 
-                    <li v-if="!online">
+                    <li v-if="!online" @click.prevent="nop">
                         <a href="#">未登录</a>
                     </li>
 
-                    <li v-if="online">
+                    <li v-if="online" @click.prevent="nop">
                         <a href="#">{{username}}</a>
                     </li>
-                    <li v-if="online">
+                    <li v-if="online" @click.prevent="logout">
                         <a href="#"><span class="text-danger">退出</span></a>
                     </li>
                 </ul>
@@ -47,6 +47,17 @@
                     username: function()
                     {
                         return this.$store.state.user.uid;
+                    }
+                },
+            methods:
+                {
+                    logout: function()
+                    {
+                        this.$store.commit('user/logout');
+                    },
+                    nop: function()
+                    {
+                        console.log('nop');
                     }
                 }
         }

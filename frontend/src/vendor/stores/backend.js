@@ -2,8 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
-const backend = new Vuex.Store
-(
+const backend =
     {
         state:
             {
@@ -20,7 +19,6 @@ const backend = new Vuex.Store
 
                 }
             }
-    }
-);
+    };
 
 export default backend;

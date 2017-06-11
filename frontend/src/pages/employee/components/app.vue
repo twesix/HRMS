@@ -10,27 +10,27 @@
                 <div class="col-sm-3">
                     <ul class="list-group">
                         <li @click="change_panel('login')" class="list-group-item"
-                            :class="{ active:  panel === 'login'}">
+                            :class="{ active:  panel === 'login', disabled: online}">
                             登录
                         </li>
                         <li @click="change_panel('timecard')" class="list-group-item"
-                            :class="{ active:  panel === 'timecard'}">
+                            :class="{ active:  panel === 'timecard', disabled: !online}">
                             维护考勤时间卡
                         </li>
                         <li @click="change_panel('pay_method')" class="list-group-item"
-                            :class="{ active:  panel === 'pay_method'}">
+                            :class="{ active:  panel === 'pay_method', disabled: !online}">
                             选择付款方式
                         </li>
                         <li @click="change_panel('add_order')" class="list-group-item"
-                            :class="{ active:  panel === 'add_order'}">
+                            :class="{ active:  panel === 'add_order', disabled: !online}">
                             创建订单
                         </li>
                         <li @click="change_panel('update_order')" class="list-group-item"
-                            :class="{ active:  panel === 'update_order'}">
+                            :class="{ active:  panel === 'update_order', disabled: !online}">
                             维护订单
                         </li>
                         <li @click="change_panel('delete_order')" class="list-group-item"
-                            :class="{ active:  panel === 'delete_order'}">
+                            :class="{ active:  panel === 'delete_order', disabled: !online}">
                             删除订单
                         </li>
                     </ul>
@@ -43,7 +43,7 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <login v-show=" panel === 'login' "></login>
+                            <login v-show=" panel === 'login' && !online "></login>
                             <timecard v-show=" panel === 'timecard' "></timecard>
                             <pay_method v-show=" panel === 'pay_method' "></pay_method>
                             <add_order v-show=" panel === 'add_order' "></add_order>
@@ -83,13 +83,28 @@
                 add_order,
                 delete_order,
             },
+        computed:
+            {
+                online: function()
+                {
+                    return this.$store.state.user.online;
+                }
+            },
         methods:
             {
                 change_panel(panel_name)
                 {
                     this.panel = panel_name;
                 }
+            },
+        mounted: function()
+        {
+            const uid = localStorage.getItem('employee/uid');
+            if(uid)
+            {
+                this.$store.commit('user/login', {uid: uid});
             }
+        }
     }
 </script>
 <style scoped>
