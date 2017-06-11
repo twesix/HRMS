@@ -3,7 +3,8 @@
         <navbar></navbar>
         <div id="body" class="container">
             <div class="row">
-                <h2>Human Resource Management System</h2>
+                <h3>人力资源管理系统</h3>
+                <h4>Human Resources Management System</h4>
                 <hr>
             </div>
             <div class="row">
@@ -36,7 +37,7 @@
                     </ul>
                 </div>
                 <div class="col-sm-9">
-                    <div id="panel" class="panel panel-default">
+                    <div id="panel" class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">
                                 雇员
@@ -44,11 +45,11 @@
                         </div>
                         <div class="panel-body">
                             <login v-show=" panel === 'login' && !online "></login>
-                            <timecard v-show=" panel === 'timecard' "></timecard>
-                            <pay_method v-show=" panel === 'pay_method' "></pay_method>
-                            <add_order v-show=" panel === 'add_order' "></add_order>
-                            <update_order v-show=" panel === 'update_order' "></update_order>
-                            <delete_order v-show=" panel === 'delete_order' "></delete_order>
+                            <timecard v-show=" panel === 'timecard' && online "></timecard>
+                            <pay_method v-show=" panel === 'pay_method' && online "></pay_method>
+                            <add_order v-show=" panel === 'add_order' && online "></add_order>
+                            <update_order v-show=" panel === 'update_order' && online "></update_order>
+                            <delete_order v-show=" panel === 'delete_order' && online "></delete_order>
                         </div>
                     </div>
                 </div>

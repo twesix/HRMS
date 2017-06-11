@@ -3,7 +3,8 @@
         <navbar></navbar>
         <div id="body" class="container">
             <div class="row">
-                <h2>Human Resource Management System</h2>
+                <h3>人力资源管理系统</h3>
+                <h4>Human Resources Management System</h4>
                 <hr>
             </div>
             <div class="row">
@@ -36,7 +37,7 @@
                     </ul>
                 </div>
                 <div class="col-sm-9">
-                    <div id="panel" class="panel panel-default">
+                    <div id="panel" class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">
                                 管理员
@@ -44,12 +45,12 @@
                         </div>
                         <div class="panel-body">
                             <login v-show=" panel === 'login' && !online "></login>
-                            <system_report v-show=" panel === 'system_report' "></system_report>
-                            <employee_report v-show=" panel === 'employee_report' "></employee_report>
-                            <update_or_delete_employee v-show=" panel === 'update_or_delete_employee' ">
+                            <system_report v-show=" panel === 'system_report' && online "></system_report>
+                            <employee_report v-show=" panel === 'employee_report' && online "></employee_report>
+                            <update_or_delete_employee v-show=" panel === 'update_or_delete_employee' && online ">
                             </update_or_delete_employee>
-                            <settle_the_wage v-show=" panel === 'settle_the_wage' "></settle_the_wage>
-                            <add_employee v-show=" panel === 'add_employee' "></add_employee>
+                            <settle_the_wage v-show=" panel === 'settle_the_wage' && online "></settle_the_wage>
+                            <add_employee v-show=" panel === 'add_employee' && online "></add_employee>
                         </div>
                     </div>
                 </div>
