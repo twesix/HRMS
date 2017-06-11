@@ -14,6 +14,7 @@
         <br>
         <div id="employee_report" class="table-responsive">
             <table class="table table-bordered">
+                <tbody>
                 <tr>
                     <td>雇员id</td>
                     <td>{{ uid }}</td>
@@ -46,6 +47,7 @@
                     <td>小时限制</td>
                     <td>{{ hour_limit }}</td>
                 </tr>
+                </tbody>
             </table>
         </div>
     </div>
@@ -77,55 +79,55 @@
                 }
         };
     export default
+    {
+        data: function ()
         {
-            data: function ()
+            return {
+                id: null,
+                uid: null,
+                username: 0,
+                usertype: 0,
+                tel: 0,
+                salary_per_hour: 0,
+                salary_fixed: 0,
+                salary_rate: 0,
+                hour_limit: 0,
+            };
+        },
+        generated:
             {
-                return {
-                    id: null,
-                    uid: null,
-                    username: 0,
-                    usertype: 0,
-                    tel: 0,
-                    salary_per_hour: 0,
-                    salary_fixed: 0,
-                    salary_rate: 0,
-                    hour_limit: 0,
-                };
-            },
-            generated:
+                request_url: function()
                 {
-                    request_url: function()
+                    return `${this.$store.state.backend.base_url}`;
+                }
+            },
+        methods:
+            {
+                submit: function()
+                {
+                    const report = reports[this.id];
+                    if(report)
                     {
-                        return `${this.$store.state.backend.base_url}`;
+                        this.__display_report(report);
+                    }
+                    else
+                    {
+                        alert('这个员工id不存在');
                     }
                 },
-            methods:
+                __display_report(profile)
                 {
-                    submit: function()
-                    {
-                        const report = reports[this.id];
-                        if(report)
-                        {
-                            this.__display_report(report);
-                        }
-                        else
-                        {
-                            alert('这个员工id不存在');
-                        }
-                    },
-                    __display_report(profile)
-                    {
-                        this.uid = profile.uid;
-                        this.username = profile.username;
-                        this.usertype = profile.usertype;
-                        this.tel = profile.tel;
-                        this.salary_per_hour = profile.salary_per_hour;
-                        this.salary_fixed = profile.salary_fixed;
-                        this.salary_rate = profile.salary_rate;
-                        this.hour_limit = profile.hour_limit;
-                    }
+                    this.uid = profile.uid;
+                    this.username = profile.username;
+                    this.usertype = profile.usertype;
+                    this.tel = profile.tel;
+                    this.salary_per_hour = profile.salary_per_hour;
+                    this.salary_fixed = profile.salary_fixed;
+                    this.salary_rate = profile.salary_rate;
+                    this.hour_limit = profile.hour_limit;
                 }
-        }
+            }
+    }
 </script>
 <style scoped>
 

@@ -32,6 +32,7 @@
         </form>
         <hr>
         <table class="table">
+            <tbody>
             <tr>
                 <td>姓名：</td>
                 <td>{{ username }}</td>
@@ -44,6 +45,7 @@
                 <td>工作时间：</td>
                 <td>{{ work_time }}</td>
             </tr>
+            </tbody>
         </table>
     </div>
 </template>
