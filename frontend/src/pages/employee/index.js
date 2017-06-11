@@ -21,3 +21,18 @@ const app = new Vue
             }
     }
 );
+
+window.orders =
+    {
+
+    };
+
+window.timecards =
+    {
+        '001':
+            {
+                date: '',
+                start_time: 0,
+                end_time: 24
+            }
+    };

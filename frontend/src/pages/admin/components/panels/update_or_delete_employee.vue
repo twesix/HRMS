@@ -74,6 +74,29 @@
     </div>
 </template>
 <script>
+    const employees =
+        {
+            '001':
+                {
+                    username: '孟政元',
+                    usertype: 'hour',
+                    tel: '12345678901',
+                    salary_per_hour: 100,
+                    salary_fixed: 10000,
+                    salary_rate: 10,
+                    hour_limit: 24,
+                },
+            '002':
+                {
+                    username: '赵俊法',
+                    usertype: 'salary',
+                    tel: '12345678901',
+                    salary_per_hour: 200,
+                    salary_fixed: 15000,
+                    salary_rate: 20,
+                    hour_limit: 14,
+                }
+        };
     export default
     {
         data: function () {
@@ -108,14 +131,35 @@
                 update: function()
                 {
                     console.log(this.request_url_of_update);
+                    alert('更新成功');
                 },
                 query: function()
                 {
+                    const profile = employees[this.id];
+                    if(profile)
+                    {
+                        this.__display_employee(profile);
+                    }
+                    else
+                    {
+                        alert('这个id对应的雇员不存在');
+                    }
                     console.log(this.request_url_of_query);
                 },
                 remove: function()
                 {
                     console.log(this.request_url_of_delete);
+                    alert('删除成功');
+                },
+                __display_employee(profile)
+                {
+                    this.username = profile.username;
+                    this.usertype = profile.usertype;
+                    this.tel = profile.tel;
+                    this.salary_per_hour = profile.salary_per_hour;
+                    this.salary_fixed = profile.salary_fixed;
+                    this.salary_rate = profile.salary_rate;
+                    this.hour_limit = profile.hour_limit;
                 }
             }
     }

@@ -43,6 +43,7 @@
                 submit: function()
                 {
                     console.log(this.request_url);
+                    alert('打卡成功');
                 }
             }
     }

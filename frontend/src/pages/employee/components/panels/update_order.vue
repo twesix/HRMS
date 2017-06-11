@@ -1,37 +1,59 @@
 <template>
-    <form @submit.prevent="submit" class="form">
-        <div class="form-group">
-            <label for="order_id">
-                订单id
-            </label>
-            <input v-model="order_id" id="order_id"
-                   type="text" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="customer_point_of_contact">
-                customer point of contact
-            </label>
-            <input v-model="customer_point_of_contact" id="customer_point_of_contact"
-                   type="text" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="customer_billing_address">
-                customer billing address
-            </label>
-            <input v-model="customer_billing_address" id="customer_billing_address"
-                   type="text" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="products_purchased">
-                products purchased
-            </label>
-            <input v-model="products_purchased" id="products_purchased"
-                   type="text" class="form-control" required>
-        </div>
-        <button class="btn btn-default form-control" type="submit">更新订单</button>
-    </form>
+    <div>
+        <form @submit.prevent="query" class="form">
+            <div class="form-group">
+                <label for="order_id">
+                    订单id
+                </label>
+                <input v-model="order_id" id="order_id"
+                       type="text" class="form-control" required>
+            </div>
+            <button class="btn btn-default form-control">查询</button>
+        </form>
+        <hr>
+        <form @submit.prevent="submit" class="form">
+
+            <div class="form-group">
+                <label for="customer_point_of_contact">
+                    客户联系人
+                </label>
+                <input v-model="customer_point_of_contact" id="customer_point_of_contact"
+                       type="text" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="customer_billing_address">
+                    客户账单地址
+                </label>
+                <input v-model="customer_billing_address" id="customer_billing_address"
+                       type="text" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="products_purchased">
+                    购买的产品
+                </label>
+                <input v-model="products_purchased" id="products_purchased"
+                       type="text" class="form-control" required>
+            </div>
+            <button class="btn btn-default form-control" type="submit">更新订单</button>
+        </form>
+    </div>
 </template>
 <script>
+    const orders =
+        {
+            '001':
+                {
+                    customer_point_of_contact: '联系人1',
+                    customer_billing_address: '地址1',
+                    products_purchased: '智商',
+                },
+            '002':
+                {
+                    customer_point_of_contact: '联系人2',
+                    customer_billing_address: '地址2',
+                    products_purchased: '情商',
+                }
+        };
     export default
     {
         data: function () {
@@ -44,16 +66,40 @@
         },
         computed:
             {
-                request_url: function()
+                request_url_of_update: function()
                 {
                     return`${this.$store.state.backend.base_url}/update_order?order_id=${this.order_id}&customer_point_of_contact=${this.customer_point_of_contact}&customer_billing_address=${this.customer_billing_address}&products_purchased=${this.products_purchased}`;
+                },
+                request_url_of_query: function()
+                {
+                    return`${this.$store.state.backend.base_url}/query_order?order_id=${this.order_id}`;
                 }
             },
         methods:
             {
+                query: function()
+                {
+                    console.log(this.request_url_of_query);
+                    const order = orders[this.order_id];
+                    if(order)
+                    {
+                        this.__display_order(order);
+                    }
+                    else
+                    {
+                        alert('订单不存在');
+                    }
+                },
                 submit: function()
                 {
-                    console.log(this.request_url);
+                    console.log(this.request_url_of_update);
+                    alert('更新成功');
+                },
+                __display_order: function(order)
+                {
+                    this.customer_point_of_contact = order.customer_point_of_contact;
+                    this.customer_billing_address = order.customer_billing_address;
+                    this.products_purchased = order.products_purchased;
                 }
             }
     }

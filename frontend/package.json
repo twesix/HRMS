@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "webpack --config webpack.dev.config.js --display-modules",
+    "dev": "webpack --config webpack.dev.config.js",
     "dll": "webpack --config webpack.dll.config.js",
     "page": "webpack --config webpack.page.config.js",
     "build": "webpack --config webpack.build.config.js"

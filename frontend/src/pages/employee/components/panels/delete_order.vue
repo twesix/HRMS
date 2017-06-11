@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="login" class="form">
+    <form @submit.prevent="submit" class="form">
         <div class="form-group">
             <label for="order_id">
                 账户
@@ -10,6 +10,17 @@
     </form>
 </template>
 <script>
+    const orders =
+        {
+            '001':
+                {
+
+                },
+            '002':
+                {
+
+                }
+        };
     export default
     {
         data: function () {
@@ -26,9 +37,17 @@
             },
         methods:
             {
-                login: function()
+                submit: function()
                 {
                     console.log(this.request_url);
+                    if(orders[this.order_id])
+                    {
+                        alert('删除成功');
+                    }
+                    else
+                    {
+                        alert('删除失败，该订单不存在');
+                    }
                 }
             }
     }

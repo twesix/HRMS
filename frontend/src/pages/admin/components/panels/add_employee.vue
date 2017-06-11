@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submit" class="form">
+    <form @submit.prevent="submit" class="form" id="form">
         <div class="form-group">
             <label for="username">
                 雇员姓名
@@ -36,7 +36,7 @@
         </div>
         <div class="form-group">
             <label for="salary_rate">
-                佣金率
+                佣金率(%)
             </label>
             <input v-model="salary_rate" id="salary_rate" class="form-control" type="number" required>
         </div>
@@ -54,13 +54,13 @@
     {
         data: function () {
             return {
-                username: 0,
-                usertype: 0,
-                tel: 0,
-                salary_per_hour: 0,
-                salary_fixed: 0,
-                salary_rate: 0,
-                hour_limit: 0,
+                username: '孟政元',
+                usertype: 'hour',
+                tel: '12345678901',
+                salary_per_hour: 100,
+                salary_fixed: 10000,
+                salary_rate: 10,
+                hour_limit: 24,
             };
         },
         computed:
@@ -75,6 +75,7 @@
                 submit: function()
                 {
                     console.log(this.request_url);
+                    alert('添加雇员成功');
                 }
             }
     }
