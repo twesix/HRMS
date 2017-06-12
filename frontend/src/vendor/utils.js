@@ -58,6 +58,34 @@ function datetime()
     return result;
 }
 
-console.log(datetime());
+function get(url)
+{
+    return new Promise(function(resolve, reject)
+    {
+        const xhr = new XMLHttpRequest();
+        xhr.open('get', url);
+        xhr.onload = function()
+        {
+            if(xhr.status === 200)
+            {
+                resolve(xhr.responseText);
+            }
+            else
+            {
+                reject(xhr.responseText);
+            }
+        };
+        xhr.send();
+    });
+}
 
-export { date, datetime };
+// get('//luoc.co')
+//     .then(function(res)
+//     {
+//         console.log(res);
+//     },function(err)
+//     {
+//         console.log(err);
+//     });
+
+export { date, datetime, get };

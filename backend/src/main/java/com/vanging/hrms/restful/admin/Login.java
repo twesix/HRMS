@@ -2,10 +2,7 @@ package com.vanging.hrms.restful.admin;
 
 import com.alibaba.fastjson.JSON;
 import com.vanging.hrms.actions.Admin;
-import com.vanging.hrms.persistence.Persistence;
-import com.vanging.hrms.persistence.models.Administrator;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import com.vanging.hrms.restful.response.JSONResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,30 +18,54 @@ public class Login extends HttpServlet
     {
 
         System.out.println("request");
-        String finalResponse;
+        JSONResponse finalResponse = new JSONResponse();
 
         String id = request.getParameter("id");
         String password = request.getParameter("password");
 
         if(id == null || password == null)
         {
-            finalResponse = "no_id_or_password";
+            finalResponse.setStatus("no_id_or_password");
         }
         else
         {
-            if(Admin.login((long)Float.parseFloat(id), password))
+            long the_id;
+            try
             {
-                finalResponse = "ok";
+                the_id = (long)Float.parseFloat(id);
+                if(Admin.login(the_id, password))
+                {
+                    finalResponse.setStatus("ok");
+                }
+                else
+                {
+                    finalResponse.setStatus("wrong_password");
+                }
             }
-            else
+            catch(Exception e)
             {
-                finalResponse = "error";
+                e.printStackTrace();
+                finalResponse.setStatus("bad_id");
             }
         }
 
-        response.setHeader("Content-Type", "text/plain");
+        response.addHeader("Access-Control-Allow-Origin", "*");
+
         PrintWriter out = response.getWriter();
-        out.print(finalResponse);
+        JSON.writeJSONString(out, finalResponse);
     }
 
+}
+
+class Message
+{
+    private String uid;
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 }

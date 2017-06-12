@@ -16,7 +16,8 @@
     </form>
 </template>
 <script>
-    module.exports =
+    import {get} from '../../../../vendor/utils.js';
+    export default
         {
             data:function()
             {
@@ -29,23 +30,33 @@
                 {
                     request_url: function()
                     {
-                        return`${this.$store.state.backend.base_url}/login?account=${this.account}&password=${this.password}`;
+                        return`${this.$store.state.backend.base_url}/admin/login?id=${this.account}&password=${this.password}`;
                     }
                 },
             methods:
                 {
-                    login: function()
+                    login: async function()
                     {
-                        if(this.password === '00000000')
+                        console.log(this.request_url);
+                        let res;
+                        try
+                        {
+                            res = await get(this.request_url);
+                            res = JSON.parse(res);
+                        }
+                        catch(e)
+                        {
+                            console.log(e);
+                            alert('登录失败');
+                        }
+                        if(res.status === 'ok')
                         {
                             this.$store.commit('user/login', {uid: this.account});
                         }
                         else
                         {
-                            alert('密码错误');
+                            alert('登录失败');
                         }
-                        console.log(this.request_url);
-
                     }
                 }
         }
