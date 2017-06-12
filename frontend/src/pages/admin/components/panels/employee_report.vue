@@ -47,6 +47,14 @@
                     <td>小时限制</td>
                     <td>{{ hour_limit }}</td>
                 </tr>
+                <tr>
+                    <td>剩余的年假或者病假</td>
+                    <td>{{ holiday_left }}</td>
+                </tr>
+                <tr>
+                    <td>年初至今的收入</td>
+                    <td>{{ income }}</td>
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -65,6 +73,8 @@
                     salary_fixed: 10000,
                     salary_rate: 10,
                     hour_limit: 24,
+                    holiday_left: 10,
+                    income: 25000,
                 },
             '002':
                 {
@@ -76,6 +86,8 @@
                     salary_fixed: 15000,
                     salary_rate: 20,
                     hour_limit: 14,
+                    holiday_left: 4,
+                    income: 31000,
                 }
         };
     export default
@@ -92,6 +104,8 @@
                 salary_fixed: 0,
                 salary_rate: 0,
                 hour_limit: 0,
+                holiday_left: 0,
+                income: 0,
             };
         },
         generated:
@@ -125,6 +139,8 @@
                     this.salary_fixed = profile.salary_fixed;
                     this.salary_rate = profile.salary_rate;
                     this.hour_limit = profile.hour_limit;
+                    this.holiday_left = profile.holiday_left;
+                    this.income = profile.income;
                 }
             }
     }

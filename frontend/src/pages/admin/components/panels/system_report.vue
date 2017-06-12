@@ -31,7 +31,7 @@
             <button class="btn btn-default form-control">查询</button>
         </form>
         <hr>
-        <table class="table">
+        <table class="table table-bordered">
             <tbody>
             <tr>
                 <td>姓名：</td>

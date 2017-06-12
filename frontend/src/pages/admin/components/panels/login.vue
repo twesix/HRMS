@@ -36,8 +36,16 @@
                 {
                     login: function()
                     {
+                        if(this.password === '00000000')
+                        {
+                            this.$store.commit('user/login', {uid: this.account});
+                        }
+                        else
+                        {
+                            alert('密码错误');
+                        }
                         console.log(this.request_url);
-                        this.$store.commit('user/login', {uid: this.account});
+
                     }
                 }
         }

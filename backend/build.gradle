@@ -1,8 +1,9 @@
-group 'com.vanging'
+group 'com.vanging.hrms'
 version '2017.0.0'
 
 apply plugin: 'java'
 apply plugin: 'war'
+apply plugin: 'idea'
 
 repositories {
     mavenCentral()
