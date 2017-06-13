@@ -12,7 +12,7 @@ public class AdminTest
     @BeforeClass
     public static void setUp()
     {
-        Persistence.config("hibernate.test.cfg.xml");
+        Persistence.development_config();
     }
 
     @AfterClass
@@ -30,7 +30,18 @@ public class AdminTest
     @Test
     public void addUser() throws Exception
     {
-        boolean result = Admin.addEmployee(123, "123", "123", "", "hour", "123", 0, 0, 0, 0);
+        boolean result = Admin.addEmployee
+                (
+                        "123",
+                        "123",
+                        "中文名",
+                        "hour",
+                        "1234567890",
+                        0,
+                        0,
+                        0,
+                        0
+                );
         Assert.assertTrue(result);
     }
 }

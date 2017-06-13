@@ -2,15 +2,24 @@ package com.vanging.hrms.persistence.models;
 
 public class Profile
 {
-    private long id; // id card number
+    private String id; // id card number
     private String username;
-    private String pay_method;
-    private String usertype; // hour, salaried, commissioned
+    private String usertype; // hour, salary, commission
     private String tel;
-    private float hourly_rate;
-    private float salary;
-    private float commission_rate;
+    private float salary_per_hour;
+    private float salary_fixed;
+    private float salary_rate;
     private int hour_limit;
+    private String pay_method;
+    private String pay_detail;
+
+    public String getPay_detail() {
+        return pay_detail;
+    }
+
+    public void setPay_detail(String pay_detail) {
+        this.pay_detail = pay_detail;
+    }
 
     public String getUsername() {
         return username;
@@ -20,11 +29,11 @@ public class Profile
         this.username = username;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -52,28 +61,28 @@ public class Profile
         this.tel = tel;
     }
 
-    public float getHourly_rate() {
-        return hourly_rate;
+    public float getSalary_per_hour() {
+        return salary_per_hour;
     }
 
-    public void setHourly_rate(float hourly_rate) {
-        this.hourly_rate = hourly_rate;
+    public void setSalary_per_hour(float hourly_rate) {
+        this.salary_per_hour = hourly_rate;
     }
 
-    public float getSalary() {
-        return salary;
+    public float getSalary_fixed() {
+        return salary_fixed;
     }
 
-    public void setSalary(float salary) {
-        this.salary = salary;
+    public void setSalary_fixed(float salary_fixed) {
+        this.salary_fixed = salary_fixed;
     }
 
-    public float getCommission_rate() {
-        return commission_rate;
+    public float getSalary_rate() {
+        return salary_rate;
     }
 
-    public void setCommission_rate(float commission_rate) {
-        this.commission_rate = commission_rate;
+    public void setSalary_rate(float salary_rate) {
+        this.salary_rate = salary_rate;
     }
 
     public int getHour_limit() {

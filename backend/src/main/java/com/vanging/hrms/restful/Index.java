@@ -1,5 +1,8 @@
 package com.vanging.hrms.restful;
 
+import com.alibaba.fastjson.JSON;
+import com.vanging.hrms.restful.response.JSONResponse;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,11 +20,12 @@ public class Index extends HttpServlet
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String finalResponse = "ok, this is working !";
+        JSONResponse finalResponse = new JSONResponse();
 
-        response.setHeader("Content-Type", "text/plain");
+        finalResponse.setStatus("ok");
+        finalResponse.setMessage("it works !");
         PrintWriter out = response.getWriter();
-        out.print(finalResponse);
+        JSON.writeJSONString(out, finalResponse);
     }
 
 }

@@ -1,10 +1,22 @@
 <template>
-    <form @submit.prevent="submit" class="form" id="form">
+    <form @submit.prevent="submit" class="form" id="form_add_employee">
+        <div class="form-group">
+            <label for="id">
+                雇员id
+            </label>
+            <input v-model="id" id="id" class="form-control" type="text" required>
+        </div>
         <div class="form-group">
             <label for="username">
                 雇员姓名
             </label>
             <input v-model="username" id="username" class="form-control" type="text" required>
+        </div>
+        <div class="form-group">
+            <label for="password">
+                密码
+            </label>
+            <input v-model="password" id="password" class="form-control" type="text" required>
         </div>
         <div class="form-group">
             <label for="usertype">
@@ -50,11 +62,14 @@
     </form>
 </template>
 <script>
+    import {get} from '../../../../vendor/utils.js';
     export default
     {
         data: function () {
             return {
+                id: '53140821',
                 username: '孟政元',
+                password: '00000000',
                 usertype: 'hour',
                 tel: '12345678901',
                 salary_per_hour: 100,
@@ -67,15 +82,27 @@
             {
                 request_url: function()
                 {
-                    return`${this.$store.state.backend.base_url}/add_employee?username=${this.username}&usertype=${this.usertype}&tel=${this.tel}&salary_per_hour=${this.salary_per_hour}&salary_fixed=${this.salary_fixed}&salary_rate=${this.salary_rate}&hour_limit=${this.hour_limit}`;
+                    return`${this.$store.state.backend.base_url}/admin/add_employee?id=${this.id}&username=${this.username}&password=${this.password}&usertype=${this.usertype}&tel=${this.tel}&salary_per_hour=${this.salary_per_hour}&salary_fixed=${this.salary_fixed}&salary_rate=${this.salary_rate}&hour_limit=${this.hour_limit}`;
                 }
             },
         methods:
             {
-                submit: function()
+                submit: async function()
                 {
                     console.log(this.request_url);
-                    alert('添加雇员成功');
+
+                    let result = await get(this.request_url);
+                    result = JSON.parse(result);
+                    if(result.status === 'ok')
+                    {
+                        alert('添加雇员成功');
+                        document.getElementById('form_add_employee').reset();
+                    }
+                    else
+                    {
+                        console.log(result);
+                        alert('添加雇员失败');
+                    }
                 }
             }
     }

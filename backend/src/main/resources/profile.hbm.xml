@@ -3,18 +3,19 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.vanging.hrms.persistence.models">
     <class name="Profile" table="profile">
-        <id name="id" column="id" type="long">
+        <id name="id" column="id" type="java.lang.String">
             <generator class="assigned">
             </generator>
         </id>
 
         <property name="username" column="username" not-null="true" type="java.lang.String" />
-        <property name="pay_method" column="pay_method" not-null="true" type="java.lang.String" />
         <property name="usertype" column="usertype" not-null="true" type="java.lang.String" />
         <property name="tel" column="tel" not-null="true" type="java.lang.String" />
-        <property name="hourly_rate" column="hourly_rate" not-null="true" type="java.lang.Float" />
-        <property name="salary" column="salary" not-null="true" type="java.lang.Float" />
-        <property name="commission_rate" column="commission_rate" not-null="true" type="java.lang.Float" />
+        <property name="salary_per_hour" column="salary_per_hour" not-null="true" type="java.lang.Float" />
+        <property name="salary_fixed" column="salary_fixed" not-null="true" type="java.lang.Float" />
+        <property name="salary_rate" column="salary_rate" not-null="true" type="java.lang.Float" />
         <property name="hour_limit" column="hour_limit" not-null="true" type="int" />
+        <property name="pay_method" column="pay_method" not-null="false" type="java.lang.String" />
+        <property name="pay_detail" column="pay_detail" not-null="false" type="java.lang.String" />
     </class>
 </hibernate-mapping>

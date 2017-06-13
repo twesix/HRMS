@@ -19,15 +19,14 @@ public class Admin
 
     public static boolean addEmployee
             (
-                    long id,
+                    String id,
                     String password,
                     String username,
-                    String pay_method,
                     String usertype,
                     String tel,
-                    float hourly_rate,
-                    float salary,
-                    float commission_rate,
+                    float salary_per_hour,
+                    float salary_fixed,
+                    float salary_rate,
                     int hour_limit
             )
     throws Exception
@@ -42,12 +41,11 @@ public class Admin
         Profile profile = new Profile();
         profile.setId(id);
         profile.setUsername(username);
-        profile.setPay_method(pay_method);
         profile.setUsertype(usertype);
         profile.setTel(tel);
-        profile.setHourly_rate(hourly_rate);
-        profile.setSalary(salary);
-        profile.setCommission_rate(commission_rate);
+        profile.setSalary_per_hour(salary_per_hour);
+        profile.setSalary_fixed(salary_fixed);
+        profile.setSalary_rate(salary_rate);
         profile.setHour_limit(hour_limit);
 
         try

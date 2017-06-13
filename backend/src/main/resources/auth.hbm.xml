@@ -3,7 +3,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.vanging.hrms.persistence.models">
     <class name="Auth" table="auth">
-        <id name="id" column="id" type="long">
+        <id name="id" column="id" type="java.lang.String">
             <generator class="assigned">
             </generator>
         </id>

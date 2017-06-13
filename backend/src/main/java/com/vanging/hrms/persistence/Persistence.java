@@ -18,6 +18,16 @@ public class Persistence
 
     static
     {
+        production_config();
+    }
+
+    public static void development_config()
+    {
+        config("hibernate.test.cfg.xml");
+    }
+
+    public static void production_config()
+    {
         config("hibernate.cfg.xml");
     }
 
