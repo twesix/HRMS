@@ -17,18 +17,7 @@ public class Admin
         return !(administrator == null || ! administrator.getPassword().equals(password));
     }
 
-    public static boolean addEmployee
-            (
-                    String id,
-                    String password,
-                    String username,
-                    String usertype,
-                    String tel,
-                    float salary_per_hour,
-                    float salary_fixed,
-                    float salary_rate,
-                    int hour_limit
-            )
+    public static boolean addEmployee(String id, String password, String username, String usertype, String tel, float salary_per_hour, float salary_fixed, float salary_rate, int hour_limit)
     throws Exception
     {
         Session session = Persistence.getSession();
@@ -60,6 +49,37 @@ public class Admin
             e.printStackTrace();
             transaction.rollback();
             return false;
+        }
+        return true;
+    }
+
+    public static boolean deleteEmployee(String id)
+    {
+        Session session = Persistence.getSession();
+        Transaction transaction = session.getTransaction();
+
+        Auth auth = session.get(Auth.class, id);
+        if(auth == null)
+        {
+            return false;
+        }
+        else
+        {
+            Profile profile = session.get(Profile.class, id);
+
+            transaction.begin();
+            try
+            {
+                session.delete(auth);
+                session.delete(profile);
+                transaction.commit();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+                transaction.rollback();
+                return false;
+            }
         }
         return true;
     }

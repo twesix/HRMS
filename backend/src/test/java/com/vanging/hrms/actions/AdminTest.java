@@ -44,4 +44,14 @@ public class AdminTest
                 );
         Assert.assertTrue(result);
     }
+
+    @Test
+    public void deleteEmployee()
+    {
+        boolean result = Admin.deleteEmployee("53140821");
+        Assert.assertTrue(result);
+
+        result = Admin.deleteEmployee("53140820");
+        Assert.assertTrue(result);
+    }
 }

@@ -43,6 +43,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>admin/delete_employee</servlet-name>
+        <servlet-class>com.vanging.hrms.restful.admin.DeleteEmployee</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin/delete_employee</servlet-name>
+        <url-pattern>/admin/delete_employee</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>admin/employee_report</servlet-name>
         <servlet-class>com.vanging.hrms.restful.admin.EmployeeReport</servlet-class>
     </servlet>
