@@ -1,7 +1,7 @@
-package com.vanging.hrms.actions;
+package com.vanging.hrms.persistence.actions;
 
-import com.vanging.hrms.actions.Employee;
 import com.vanging.hrms.persistence.Persistence;
+import com.vanging.hrms.persistence.models.Profile;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -22,13 +22,13 @@ public class AdminTest
     }
 
     @Test
-    public void login() throws Exception
+    public void login()
     {
         Assert.assertFalse(Admin.login(123, "123"));
     }
 
     @Test
-    public void addUser() throws Exception
+    public void addEmployee() throws Exception
     {
         boolean result = Admin.addEmployee
                 (
@@ -53,5 +53,26 @@ public class AdminTest
 
         result = Admin.deleteEmployee("53140820");
         Assert.assertTrue(result);
+    }
+
+    @Test
+    public void queryEmployee()
+    {
+        Profile profile = Admin.queryEmployee("123");
+        Assert.assertNull(profile);
+
+        try
+        {
+            addEmployee();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return;
+        }
+
+        profile = Admin.queryEmployee("123");
+        String username = profile.getUsername();
+        Assert.assertNotNull(username);
     }
 }

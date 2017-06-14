@@ -1,12 +1,10 @@
-package com.vanging.hrms.actions;
+package com.vanging.hrms.persistence.actions;
 
 import com.vanging.hrms.persistence.Persistence;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class OccupyTest
 {

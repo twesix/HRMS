@@ -1,4 +1,4 @@
-package com.vanging.hrms.actions;
+package com.vanging.hrms.persistence.actions;
 
 import com.vanging.hrms.persistence.Persistence;
 import com.vanging.hrms.persistence.models.Administrator;
@@ -82,5 +82,14 @@ public class Admin
             }
         }
         return true;
+    }
+
+    public static Profile queryEmployee(String id)
+    {
+        Session session = Persistence.getSession();
+
+        Profile profile = session.get(Profile.class, id);
+
+        return profile;
     }
 }

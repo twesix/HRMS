@@ -1,8 +1,8 @@
 package com.vanging.hrms.restful.admin;
 
 import com.alibaba.fastjson.JSON;
-import com.vanging.hrms.actions.Admin;
-import com.vanging.hrms.actions.Occupy;
+import com.vanging.hrms.persistence.actions.Admin;
+import com.vanging.hrms.persistence.actions.Occupy;
 import com.vanging.hrms.restful.response.JSONResponse;
 
 import javax.servlet.ServletException;

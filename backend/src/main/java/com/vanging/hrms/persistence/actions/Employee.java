@@ -1,4 +1,4 @@
-package com.vanging.hrms.actions;
+package com.vanging.hrms.persistence.actions;
 
 import com.vanging.hrms.persistence.Persistence;
 import com.vanging.hrms.persistence.models.Auth;

@@ -70,6 +70,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>admin/query_employee</servlet-name>
+        <servlet-class>com.vanging.hrms.restful.admin.QueryEmployee</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin/query_employee</servlet-name>
+        <url-pattern>/admin/query_employee</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>admin/settle_the_wage</servlet-name>
         <servlet-class>com.vanging.hrms.restful.admin.SettleTheWage</servlet-class>
     </servlet>

@@ -3,7 +3,7 @@ package com.vanging.hrms.restful.response;
 public class JSONResponse
 {
     private String status;
-    private String message;
+    private Object message;
 
     public String getStatus() {
         return status;
@@ -13,11 +13,11 @@ public class JSONResponse
         this.status = status;
     }
 
-    public String getMessage() {
+    public Object getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(Object message) {
         this.message = message;
     }
 }

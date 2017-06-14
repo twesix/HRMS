@@ -74,29 +74,7 @@
     </div>
 </template>
 <script>
-    const employees =
-        {
-            '001':
-                {
-                    username: '孟政元',
-                    usertype: 'hour',
-                    tel: '12345678901',
-                    salary_per_hour: 100,
-                    salary_fixed: 10000,
-                    salary_rate: 10,
-                    hour_limit: 24,
-                },
-            '002':
-                {
-                    username: '赵俊法',
-                    usertype: 'salary',
-                    tel: '12345678901',
-                    salary_per_hour: 200,
-                    salary_fixed: 15000,
-                    salary_rate: 20,
-                    hour_limit: 14,
-                }
-        };
+    import {get} from '../../../../vendor/utils.js';
     export default
     {
         data: function () {
@@ -119,11 +97,11 @@
                 },
                 request_url_of_query: function()
                 {
-                    return`${this.$store.state.backend.base_url}/query_employee?id=${this.id}`;
+                    return`${this.$store.state.backend.base_url}/admin/query_employee?id=${this.id}`;
                 },
                 request_url_of_delete: function()
                 {
-                    return`${this.$store.state.backend.base_url}/delete_employee?id=${this.id}`;
+                    return`${this.$store.state.backend.base_url}/admin/delete_employee?id=${this.id}`;
                 }
             },
         methods:
@@ -133,23 +111,35 @@
                     console.log(this.request_url_of_update);
                     alert('更新成功');
                 },
-                query: function()
+                query: async function()
                 {
-                    const profile = employees[this.id];
-                    if(profile)
+                    let result = await get(this.request_url_of_query);
+                    result = JSON.parse(result);
+                    if(result.status === 'ok')
                     {
-                        this.__display_employee(profile);
+                        console.log(result);
+                        this.__display_employee(result.message);
                     }
                     else
                     {
-                        alert('这个id对应的雇员不存在');
+                        alert('查询失败');
                     }
                     console.log(this.request_url_of_query);
                 },
-                remove: function()
+                remove: async function()
                 {
                     console.log(this.request_url_of_delete);
-                    alert('删除成功');
+
+                    let result = await get(this.request_url_of_delete);
+                    result = JSON.parse(result);
+                    if(result.status === 'ok')
+                    {
+                        alert('删除成功');
+                    }
+                    else
+                    {
+                        alert('删除失败');
+                    }
                 },
                 __display_employee(profile)
                 {
