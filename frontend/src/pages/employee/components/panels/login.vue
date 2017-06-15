@@ -1,26 +1,27 @@
 <template>
     <form @submit.prevent="login" class="form">
         <div class="form-group">
-            <label for="login_account">
+            <label for="id">
                 账户
             </label>
-            <input v-model="account" id="login_account" type="text" class="form-control" required>
+            <input v-model="id" id="id" type="text" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="login_password">
+            <label for="password">
                 密码
             </label>
-            <input v-model="password" id="login_password" type="password" class="form-control" required>
+            <input v-model="password" id="password" type="password" class="form-control" required>
         </div>
         <button class="btn btn-default form-control" type="submit">登录</button>
     </form>
 </template>
 <script>
+    import {get} from '../../../../vendor/utils.js';
     export default
     {
         data: function () {
             return {
-                account: null,
+                id: null,
                 password: null,
             };
         },
@@ -28,22 +29,23 @@
             {
                 request_url: function()
                 {
-                    return`${this.$store.state.backend.base_url}/login?account=${this.login_account}&password=${this.login_password}`;
+                    return`${this.$store.state.backend.base_url}/employee/login?id=${this.id}&password=${this.password}`;
                 }
             },
         methods:
             {
-                login: function()
+                login: async function()
                 {
-                    if(this.password === '00000000')
+                    let result = await get(this.request_url);
+                    result = JSON.parse(result);
+                    if(result.status === 'ok')
                     {
-                        this.$store.commit('user/login', {uid: this.account});
+                        this.$store.commit('user/login', {uid: this.id});
                     }
                     else
                     {
-                        alert('密码错误');
+                        alert('登录失败');
                     }
-                    console.log(this.request_url);
                 }
             }
     }
