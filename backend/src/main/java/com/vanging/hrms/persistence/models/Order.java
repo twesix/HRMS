@@ -2,28 +2,28 @@ package com.vanging.hrms.persistence.models;
 
 public class Order
 {
-    private long order_id;
+    private String order_id;
 
     // to be assigned
-    private long employee_id;
+    private String employee_id;
     private String customer_point_of_contact;
     private String customer_billing_address;
-    private long products_purchased;
-    private String datetime;
+    private String products_purchased;
+    private String date;
 
-    public long getEmployee_id() {
+    public String getEmployee_id() {
         return employee_id;
     }
 
-    public void setEmployee_id(long employee_id) {
+    public void setEmployee_id(String employee_id) {
         this.employee_id = employee_id;
     }
 
-    public long getOrder_id() {
+    public String getOrder_id() {
         return order_id;
     }
 
-    public void setOrder_id(long order_id) {
+    public void setOrder_id(String order_id) {
         this.order_id = order_id;
     }
 
@@ -43,19 +43,19 @@ public class Order
         this.customer_billing_address = customer_billing_address;
     }
 
-    public long getProducts_purchased() {
+    public String getProducts_purchased() {
         return products_purchased;
     }
 
-    public void setProducts_purchased(long products_purchased) {
+    public void setProducts_purchased(String products_purchased) {
         this.products_purchased = products_purchased;
     }
 
-    public String getDatetime() {
-        return datetime;
+    public String getDate() {
+        return date;
     }
 
-    public void setDatetime(String datetime) {
-        this.datetime = datetime;
+    public void setDate(String datetime) {
+        this.date = datetime;
     }
 }

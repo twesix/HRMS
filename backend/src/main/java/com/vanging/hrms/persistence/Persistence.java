@@ -11,7 +11,6 @@ import org.hibernate.cfg.Configuration;
 public class Persistence
 {
     private static SessionFactory sessionFactory = null;
-    private static Configuration configuration = null;
     private static StandardServiceRegistry standardServiceRegistry = null;
     private static MetadataSources metadataSource = null;
     private static Metadata metadata = null;
@@ -53,6 +52,11 @@ public class Persistence
     public static SessionFactory getSessionFactory()
     {
         return sessionFactory;
+    }
+
+    public static void destroySessionFactory()
+    {
+        sessionFactory.close();
     }
 
     public static Session getSession()

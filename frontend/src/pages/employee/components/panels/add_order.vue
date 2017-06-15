@@ -32,6 +32,7 @@
     </form>
 </template>
 <script>
+    import {get} from '../../../../vendor/utils.js';
     export default
     {
         data: function () {
@@ -46,15 +47,23 @@
             {
                 request_url: function()
                 {
-                    return `${this.$store.state.backend.base_url}/add_order?customer_point_of_contact=${this.customer_point_of_contact}&customer_billing_address=${this.customer_billing_address}&products_purchased=${this.products_purchased}&date=${this.date}`;
+                    return`${this.$store.state.backend.base_url}/employee/add_order?customer_point_of_contact=${this.customer_point_of_contact}&customer_billing_address=${this.customer_billing_address}&products_purchased=${this.products_purchased}&date=${this.date}`;
                 }
             },
         methods:
             {
-                submit: function()
+                submit: async function()
                 {
-                    console.log(this.request_url);
-                    alert('账单创建成功');
+                    let result = await get(this.request_url);
+                    result = JSON.parse(result);
+                    if(result.status === 'ok')
+                    {
+                        alert('账单创建成功');
+                    }
+                    else
+                    {
+                        alert('账单创建失败');
+                    }
                 }
             }
     }

@@ -3,15 +3,15 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.vanging.hrms.persistence.models">
     <class name="Order" table="the_order">
-        <id name="order_id" column="order_id" type="long">
-            <generator class="native">
+        <id name="order_id" column="order_id" type="java.lang.String">
+            <generator class="uuid">
             </generator>
         </id>
 
-        <property name="employee_id" column="employee_id" not-null="true" type="long" />
+        <property name="employee_id" column="employee_id" not-null="true" type="java.lang.String" />
         <property name="customer_point_of_contact" column="customer_point_of_contact" not-null="true" type="java.lang.String" />
         <property name="customer_billing_address" column="customer_billing_address" not-null="true" type="java.lang.String" />
-        <property name="products_purchased" column="products_purchased" not-null="true" type="long" />
-        <property name="datetime" column="order_datetime" not-null="true" type="java.lang.String" />
+        <property name="products_purchased" column="products_purchased" not-null="true" type="java.lang.String" />
+        <property name="date" column="date" not-null="true" type="java.lang.String" />
     </class>
 </hibernate-mapping>
