@@ -93,7 +93,7 @@
             {
                 request_url_of_update: function()
                 {
-                    return`${this.$store.state.backend.base_url}/update_employee?id=${this.id}&username=${this.username}&usertype=${this.usertype}&tel=${this.tel}&salary_per_hour=${this.salary_per_hour}&salary_fixed=${this.salary_fixed}&salary_rate=${this.salary_rate}&hour_limit=${this.hour_limit}`;
+                    return`${this.$store.state.backend.base_url}/admin/update_employee?id=${this.id}&username=${this.username}&usertype=${this.usertype}&tel=${this.tel}&salary_per_hour=${this.salary_per_hour}&salary_fixed=${this.salary_fixed}&salary_rate=${this.salary_rate}&hour_limit=${this.hour_limit}`;
                 },
                 request_url_of_query: function()
                 {
@@ -106,13 +106,25 @@
             },
         methods:
             {
-                update: function()
+                update: async function()
                 {
                     console.log(this.request_url_of_update);
-                    alert('更新成功');
+
+                    console.log(this.request_url_of_update);
+                    let result = await get(this.request_url_of_update);
+                    result = JSON.parse(result);
+                    if(result.status === 'ok')
+                    {
+                        alert('更新成功');
+                    }
+                    else
+                    {
+                        alert('更新失败');
+                    }
                 },
                 query: async function()
                 {
+                    console.log(this.request_url_of_query);
                     let result = await get(this.request_url_of_query);
                     result = JSON.parse(result);
                     if(result.status === 'ok')
@@ -124,7 +136,6 @@
                     {
                         alert('查询失败');
                     }
-                    console.log(this.request_url_of_query);
                 },
                 remove: async function()
                 {

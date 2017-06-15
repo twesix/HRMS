@@ -96,7 +96,6 @@
                     if(result.status === 'ok')
                     {
                         alert('添加雇员成功');
-                        document.getElementById('form_add_employee').reset();
                     }
                     else
                     {

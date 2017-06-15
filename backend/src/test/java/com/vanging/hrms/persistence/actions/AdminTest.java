@@ -75,4 +75,35 @@ public class AdminTest
         String username = profile.getUsername();
         Assert.assertNotNull(username);
     }
+
+    @Test
+    public void updateEmployee() throws Exception
+    {
+        addEmployee();
+        boolean result = Admin.updateEmployee
+                (
+                        "123",
+                        "中文名",
+                        "hour",
+                        "1234567890000",
+                        0,
+                        0,
+                        0,
+                        0
+                );
+        Assert.assertTrue(result);
+
+        result = Admin.updateEmployee
+                (
+                        "12",
+                        "中文名",
+                        "hour",
+                        "1234567890000",
+                        0,
+                        0,
+                        0,
+                        0
+                );
+        Assert.assertFalse(result);
+    }
 }

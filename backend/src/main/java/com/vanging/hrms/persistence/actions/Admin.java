@@ -92,4 +92,54 @@ public class Admin
 
         return profile;
     }
+
+    public static boolean updateEmployee
+            (
+                    String id,
+                    String username,
+                    String usertype,
+                    String tel,
+                    float salary_per_hour,
+                    float salary_fixed,
+                    float salary_rate,
+                    int hour_limit
+            )
+    {
+        Session session = Persistence.getSession();
+
+        Profile profile = session.get(Profile.class, id);
+
+        if(profile == null)
+        {
+            return false;
+        }
+        else
+        {
+
+            profile.setUsername(username);
+            profile.setUsertype(usertype);
+            profile.setTel(tel);
+            profile.setSalary_per_hour(salary_per_hour);
+            profile.setSalary_fixed(salary_fixed);
+            profile.setSalary_rate(salary_rate);
+            profile.setHour_limit(hour_limit);
+
+            Transaction transaction = session.getTransaction();
+            transaction.begin();
+            try
+            {
+                session.save(profile);
+                session.flush();
+                transaction.commit();
+                session.close();
+                return true;
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+                transaction.rollback();
+                return false;
+            }
+        }
+    }
 }
