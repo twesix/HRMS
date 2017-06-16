@@ -1,5 +1,9 @@
 package com.vanging.hrms.restful.employee;
 
+import com.alibaba.fastjson.JSON;
+import com.vanging.hrms.persistence.actions.Employee;
+import com.vanging.hrms.restful.response.JSONResponse;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,11 +21,41 @@ public class AddTimecard extends HttpServlet
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String finalResponse = "employee / add timecard";
+        JSONResponse finalResponse = new JSONResponse();
 
-        response.setHeader("Content-Type", "text/plain");
-        PrintWriter out = response.getWriter();
-        out.print(finalResponse);
+        String pid = request.getParameter("pid");
+        String uid = request.getParameter("uid");
+        String start_str = request.getParameter("start");
+        String end_str = request.getParameter("end");
+        String date = request.getParameter("date");
+
+        if(pid == null || uid == null || start_str == null || end_str == null || date == null)
+        {
+            finalResponse.setStatus("param_wrong");
+        }
+        else
+        {
+            try
+            {
+                int start = (int)(long)Float.parseFloat(start_str);
+                int end = (int)(long)Float.parseFloat(end_str);
+
+                if(Employee.addTimecard(pid, uid,start, end, date))
+                {
+                    finalResponse.setStatus("ok");
+                }
+                else
+                {
+                    finalResponse.setStatus("error");
+                }
+            }
+            catch(Exception e)
+            {
+                finalResponse.setStatus("bad_int");
+            }
+        }
+
+        JSON.writeJSONString(response.getWriter(), finalResponse);
     }
 
 }

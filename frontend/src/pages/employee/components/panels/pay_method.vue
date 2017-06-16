@@ -20,6 +20,7 @@
     </form>
 </template>
 <script>
+    import {get} from '../../../../vendor/utils.js';
     export default
     {
         data: function () {
@@ -32,15 +33,24 @@
             {
                 request_url: function()
                 {
-                    return`${this.$store.state.backend.base_url}/set_pay_method?pay_method=${this.pay_method}&detail=${this.detail}`;
+                    return`${this.$store.state.backend.base_url}/employee/set_pay_method?id=${this.$store.state.user.uid}&method=${this.pay_method}&detail=${this.detail}`;
                 }
             },
         methods:
             {
-                submit: function()
+                submit: async function()
                 {
-                    console.log(this.request_url);
-                    alert('修改成功');
+                    let result = await get(this.request_url);
+                    result = JSON.parse(result);
+
+                    if(result.status === 'ok')
+                    {
+                        alert('修改成功');
+                    }
+                    else
+                    {
+                        alert('修改失败');
+                    }
                 }
             }
     }

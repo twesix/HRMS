@@ -3,13 +3,13 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.vanging.hrms.persistence.models">
     <class name="Timecard" table="timecard">
-        <id name="project_id" column="project_id" type="long">
+        <id name="project_id" column="project_id" type="java.lang.String">
             <generator class="assigned">
             </generator>
         </id>
 
-        <property name="employee_id" column="employee_id" not-null="true" type="long" />
-        <property name="datetime" column="submit_datetime" not-null="true" type="java.lang.String" />
+        <property name="employee_id" column="employee_id" not-null="true" type="java.lang.String" />
+        <property name="date" column="submit_datetime" not-null="true" type="java.lang.String" />
         <property name="start_time" column="start_time" not-null="true" type="int" />
         <property name="end_time" column="end_time" not-null="true" type="int" />
     </class>

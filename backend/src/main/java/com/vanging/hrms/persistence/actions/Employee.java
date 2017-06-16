@@ -1,10 +1,10 @@
 package com.vanging.hrms.persistence.actions;
 
-import com.alibaba.fastjson.JSON;
 import com.vanging.hrms.persistence.Persistence;
 import com.vanging.hrms.persistence.models.Auth;
 import com.vanging.hrms.persistence.models.Order;
 import com.vanging.hrms.persistence.models.Profile;
+import com.vanging.hrms.persistence.models.Timecard;
 import org.hibernate.Session;
 
 public class Employee
@@ -166,6 +166,34 @@ public class Employee
                 session.getTransaction().rollback();
                 return false;
             }
+        }
+    }
+
+    public static boolean addTimecard(String pid, String uid, int start, int end, String date)
+    {
+        Session session = Persistence.getSession();
+
+        Timecard timecard = new Timecard();
+
+        timecard.setProject_id(pid);
+        timecard.setEmployee_id(uid);
+        timecard.setStart_time(start);
+        timecard.setEnd_time(end);
+        timecard.setDate(date);
+
+        try
+        {
+            session.beginTransaction();
+
+            session.saveOrUpdate(timecard);
+            session.getTransaction().commit();
+            return true;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+            return false;
         }
     }
 }

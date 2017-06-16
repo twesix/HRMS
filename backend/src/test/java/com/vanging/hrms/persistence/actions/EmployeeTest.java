@@ -70,4 +70,13 @@ public class EmployeeTest {
         boolean result = Employee.setPayMethod("id", "method", "detail");
         Assert.assertFalse(result);
     }
+
+    @Test
+    public void addTimecard()
+    {
+        boolean result = Employee.addTimecard("pid", "uid",4, 6, "123");
+        Assert.assertTrue(result);
+        result = Employee.addTimecard("pid", "uid",4, 8, "123");
+        Assert.assertTrue(result);
+    }
 }
