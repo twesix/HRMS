@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.vanging.hrms.persistence.Persistence;
 import com.vanging.hrms.persistence.models.Auth;
 import com.vanging.hrms.persistence.models.Order;
+import com.vanging.hrms.persistence.models.Profile;
 import org.hibernate.Session;
 
 public class Employee
@@ -125,6 +126,37 @@ public class Employee
             {
                 session.beginTransaction();
                 session.save(order);
+                session.getTransaction().commit();
+                return true;
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+                session.getTransaction().rollback();
+                return false;
+            }
+        }
+    }
+
+    public static boolean setPayMethod(String id, String method, String detail)
+    {
+        Session session = Persistence.getSession();
+
+        Profile profile = session.get(Profile.class, id);
+
+        if(profile == null)
+        {
+            return false;
+        }
+        else
+        {
+            session.beginTransaction();
+            try
+            {
+                profile.setPay_method(method);
+                profile.setPay_detail(detail);
+
+                session.save(profile);
                 session.getTransaction().commit();
                 return true;
             }

@@ -1,5 +1,9 @@
 package com.vanging.hrms.restful.employee;
 
+import com.alibaba.fastjson.JSON;
+import com.vanging.hrms.persistence.actions.Employee;
+import com.vanging.hrms.restful.response.JSONResponse;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,11 +21,29 @@ public class SetPayMethod extends HttpServlet
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String finalResponse = "employee / set pay method";
+        JSONResponse finalResponse = new JSONResponse();
 
-        response.setHeader("Content-Type", "text/plain");
-        PrintWriter out = response.getWriter();
-        out.print(finalResponse);
+        String id = request.getParameter("id");
+        String method = request.getParameter("method");
+        String detail = request.getParameter("detail");
+
+        if(id == null || method == null || detail == null)
+        {
+            finalResponse.setStatus("param_wrong");
+        }
+        else
+        {
+            if(Employee.setPayMethod(id, method, detail))
+            {
+                finalResponse.setStatus("ok");
+            }
+            else
+            {
+                finalResponse.setStatus("error");
+            }
+        }
+
+        JSON.writeJSONString(response.getWriter(), finalResponse);
     }
 
 }

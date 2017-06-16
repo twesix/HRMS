@@ -63,4 +63,11 @@ public class EmployeeTest {
         boolean result = Employee.updateOrder(order_id, "contact", "address", "products");
         Assert.assertTrue(result);
     }
+
+    @Test
+    public void setPayMethod()
+    {
+        boolean result = Employee.setPayMethod("id", "method", "detail");
+        Assert.assertFalse(result);
+    }
 }
