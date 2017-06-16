@@ -31,8 +31,9 @@ public class EmployeeTest {
     @Test
     public void addOrder() throws Exception
     {
-        String order_id = Employee.addOrder("customer point of contact", "customer billing address", "products purchased", "date");
+        String order_id = Employee.addOrder("uid","customer point of contact", "customer billing address", "products purchased", "date");
         Assert.assertNotEquals(order_id, "");
+        System.out.println(order_id);
     }
 
 }

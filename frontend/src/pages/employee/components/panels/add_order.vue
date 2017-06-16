@@ -47,7 +47,7 @@
             {
                 request_url: function()
                 {
-                    return`${this.$store.state.backend.base_url}/employee/add_order?customer_point_of_contact=${this.customer_point_of_contact}&customer_billing_address=${this.customer_billing_address}&products_purchased=${this.products_purchased}&date=${this.date}`;
+                    return`${this.$store.state.backend.base_url}/employee/add_order?uid=${this.$store.state.user.uid}&customer_point_of_contact=${this.customer_point_of_contact}&customer_billing_address=${this.customer_billing_address}&products_purchased=${this.products_purchased}&date=${this.date}`;
                 }
             },
         methods:
@@ -58,11 +58,11 @@
                     result = JSON.parse(result);
                     if(result.status === 'ok')
                     {
-                        alert('账单创建成功');
+                        alert(`订单创建成功,订单id为：${result.message}`);
                     }
                     else
                     {
-                        alert('账单创建失败');
+                        alert('订单创建失败');
                     }
                 }
             }

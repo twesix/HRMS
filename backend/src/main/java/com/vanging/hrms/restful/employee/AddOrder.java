@@ -23,18 +23,19 @@ public class AddOrder extends HttpServlet
     {
         JSONResponse finalResponse = new JSONResponse();
 
+        String uid = request.getParameter("uid");
         String customer_point_of_contact = request.getParameter("customer_point_of_contact");
         String customer_billing_address = request.getParameter("customer_billing_address");
         String products_purchased = request.getParameter("products_purchased");
         String date = request.getParameter("date");
 
-        if(customer_point_of_contact == null || customer_billing_address == null || products_purchased == null || date == null)
+        if(uid == null || customer_point_of_contact == null || customer_billing_address == null || products_purchased == null || date == null)
         {
             finalResponse.setStatus("param_wrong");
         }
         else
         {
-            String order_id = Employee.addOrder(customer_point_of_contact, customer_billing_address, products_purchased, date);
+            String order_id = Employee.addOrder(uid, customer_point_of_contact, customer_billing_address, products_purchased, date);
             if(order_id.equals(""))
             {
                 finalResponse.setStatus("error");
