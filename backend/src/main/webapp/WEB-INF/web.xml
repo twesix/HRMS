@@ -144,6 +144,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>employee/query_order</servlet-name>
+        <servlet-class>com.vanging.hrms.restful.employee.QueryOrder</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>employee/query_order</servlet-name>
+        <url-pattern>/employee/query_order</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>employee/set_pay_method</servlet-name>
         <servlet-class>com.vanging.hrms.restful.employee.SetPayMethod</servlet-class>
     </servlet>

@@ -2,7 +2,7 @@
     <form @submit.prevent="submit" class="form">
         <div class="form-group">
             <label for="order_id">
-                账户
+                订单id
             </label>
             <input v-model="order_id" id="order_id" type="text" class="form-control" required>
         </div>
@@ -10,17 +10,7 @@
     </form>
 </template>
 <script>
-    const orders =
-        {
-            '001':
-                {
-
-                },
-            '002':
-                {
-
-                }
-        };
+    import {get} from '../../../../vendor/utils.js';
     export default
     {
         data: function () {
@@ -32,21 +22,24 @@
             {
                 request_url: function()
                 {
-                    return`${this.$store.state.backend.base_url}/delete_order?order_id=${this.order_id}`;
+                    return`${this.$store.state.backend.base_url}/employee/delete_order?order_id=${this.order_id}&uid=${this.$store.state.user.uid}`;
                 }
             },
         methods:
             {
-                submit: function()
+                submit: async function()
                 {
                     console.log(this.request_url);
-                    if(orders[this.order_id])
+                    let result = await get(this.request_url);
+                    console.log(result);
+                    result = JSON.parse(result);
+                    if(result.status === 'ok')
                     {
                         alert('删除成功');
                     }
                     else
                     {
-                        alert('删除失败，该订单不存在');
+                        alert('删除失败');
                     }
                 }
             }

@@ -1,5 +1,6 @@
 package com.vanging.hrms.persistence.actions;
 
+import com.alibaba.fastjson.JSON;
 import com.vanging.hrms.persistence.Persistence;
 import org.junit.After;
 import org.junit.Assert;
@@ -44,5 +45,14 @@ public class EmployeeTest {
         Assert.assertTrue(result);
         result = Employee.deleteOrder("uid", "order_id");
         Assert.assertFalse(result);
+    }
+
+    @Test
+    public void queryOrder()
+    {
+        String order_id = Employee.addOrder("uid","customer point of contact", "customer billing address", "products purchased", "date");
+        Object order = Employee.queryOrder(order_id);
+        Assert.assertNotEquals(order, "");
+        System.out.println(JSON.toJSONString(order));
     }
 }

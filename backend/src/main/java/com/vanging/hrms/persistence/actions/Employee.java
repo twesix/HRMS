@@ -1,5 +1,6 @@
 package com.vanging.hrms.persistence.actions;
 
+import com.alibaba.fastjson.JSON;
 import com.vanging.hrms.persistence.Persistence;
 import com.vanging.hrms.persistence.models.Auth;
 import com.vanging.hrms.persistence.models.Order;
@@ -87,6 +88,21 @@ public class Employee
             {
                 return false;
             }
+        }
+    }
+
+    public static Object queryOrder(String order_id)
+    {
+        Session session = Persistence.getSession();
+
+        Order order = session.get(Order.class, order_id);
+        if(order == null)
+        {
+            return "";
+        }
+        else
+        {
+            return order;
         }
     }
 }
