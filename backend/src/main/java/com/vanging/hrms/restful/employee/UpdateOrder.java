@@ -1,5 +1,9 @@
 package com.vanging.hrms.restful.employee;
 
+import com.alibaba.fastjson.JSON;
+import com.vanging.hrms.persistence.actions.Employee;
+import com.vanging.hrms.restful.response.JSONResponse;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,11 +21,29 @@ public class UpdateOrder extends HttpServlet
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String finalResponse = "employee / update order";
+        JSONResponse finalResponse = new JSONResponse();
 
-        response.setHeader("Content-Type", "text/plain");
-        PrintWriter out = response.getWriter();
-        out.print(finalResponse);
+        String order_id = request.getParameter("order_id");
+        String customer_point_of_contact = request.getParameter("customer_point_of_contact");
+        String customer_billing_address = request.getParameter("customer_billing_address");
+        String products_purchased = request.getParameter("products_purchased");
+
+        if(order_id == null || customer_point_of_contact == null || customer_billing_address == null || products_purchased == null)
+        {
+            finalResponse.setStatus("param_wrong");
+        }
+        else
+        {
+            if(Employee.updateOrder(order_id, customer_point_of_contact, customer_billing_address, products_purchased))
+            {
+                finalResponse.setStatus("ok");
+            }
+            else
+            {
+                finalResponse.setStatus("error");
+            }
+        }
+        JSON.writeJSONString(response.getWriter(), finalResponse);
     }
 
 }

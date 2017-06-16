@@ -105,4 +105,35 @@ public class Employee
             return order;
         }
     }
+
+    public static boolean updateOrder(String order_id, String customer_point_of_contact, String customer_billing_address, String products_purchased)
+    {
+        Session session = Persistence.getSession();
+
+        Order order = session.get(Order.class, order_id);
+        if(order == null)
+        {
+            return false;
+        }
+        else
+        {
+            order.setCustomer_point_of_contact(customer_point_of_contact);
+            order.setCustomer_billing_address(customer_billing_address);
+            order.setProducts_purchased(products_purchased);
+
+            try
+            {
+                session.beginTransaction();
+                session.save(order);
+                session.getTransaction().commit();
+                return true;
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+                session.getTransaction().rollback();
+                return false;
+            }
+        }
+    }
 }

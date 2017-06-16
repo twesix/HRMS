@@ -11,7 +11,7 @@
             <button class="btn btn-default form-control">查询</button>
         </form>
         <hr>
-        <form @submit.prevent="submit" class="form">
+        <form @submit.prevent="update" class="form">
 
             <div class="form-group">
                 <label for="customer_point_of_contact">
@@ -39,21 +39,7 @@
     </div>
 </template>
 <script>
-    const orders =
-        {
-            '001':
-                {
-                    customer_point_of_contact: '联系人1',
-                    customer_billing_address: '地址1',
-                    products_purchased: '智商',
-                },
-            '002':
-                {
-                    customer_point_of_contact: '联系人2',
-                    customer_billing_address: '地址2',
-                    products_purchased: '情商',
-                }
-        };
+    import {get} from '../../../../vendor/utils.js'
     export default
     {
         data: function () {
@@ -68,32 +54,40 @@
             {
                 request_url_of_update: function()
                 {
-                    return`${this.$store.state.backend.base_url}/update_order?order_id=${this.order_id}&customer_point_of_contact=${this.customer_point_of_contact}&customer_billing_address=${this.customer_billing_address}&products_purchased=${this.products_purchased}`;
+                    return`${this.$store.state.backend.base_url}/employee/update_order?order_id=${this.order_id}&customer_point_of_contact=${this.customer_point_of_contact}&customer_billing_address=${this.customer_billing_address}&products_purchased=${this.products_purchased}`;
                 },
                 request_url_of_query: function()
                 {
-                    return`${this.$store.state.backend.base_url}/query_order?order_id=${this.order_id}`;
+                    return`${this.$store.state.backend.base_url}/employee/query_order?order_id=${this.order_id}`;
                 }
             },
         methods:
             {
-                query: function()
+                query: async function()
                 {
-                    console.log(this.request_url_of_query);
-                    const order = orders[this.order_id];
-                    if(order)
+                    let result = await get(this.request_url_of_query);
+                    result = JSON.parse(result);
+                    if(result.status === 'ok')
                     {
-                        this.__display_order(order);
+                        this.__display_order(result.message);
                     }
                     else
                     {
                         alert('订单不存在');
                     }
                 },
-                submit: function()
+                update: async function()
                 {
-                    console.log(this.request_url_of_update);
-                    alert('更新成功');
+                    let result = await get(this.request_url_of_update);
+                    result = JSON.parse(result);
+                    if(result.status === 'ok')
+                    {
+                        alert('更新成功');
+                    }
+                    else
+                    {
+                        alert('更新失败');
+                    }
                 },
                 __display_order: function(order)
                 {

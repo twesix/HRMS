@@ -55,4 +55,12 @@ public class EmployeeTest {
         Assert.assertNotEquals(order, "");
         System.out.println(JSON.toJSONString(order));
     }
+
+    @Test
+    public void updateOrder()
+    {
+        String order_id = Employee.addOrder("uid","customer point of contact", "customer billing address", "products purchased", "date");
+        boolean result = Employee.updateOrder(order_id, "contact", "address", "products");
+        Assert.assertTrue(result);
+    }
 }
