@@ -55,4 +55,38 @@ public class Employee
             return "";
         }
     }
+
+    public static boolean deleteOrder(String uid, String order_id)
+    {
+        Session session = Persistence.getSession();
+
+        Order order = session.get(Order.class, order_id);
+        if(order == null)
+        {
+            return false;
+        }
+        else
+        {
+            if(uid.equals(order.getEmployee_id()))
+            {
+                try
+                {
+                    session.beginTransaction();
+                    session.delete(order);
+                    session.getTransaction().commit();
+                    return true;
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                    session.getTransaction().rollback();
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
 }

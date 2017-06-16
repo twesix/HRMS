@@ -36,4 +36,13 @@ public class EmployeeTest {
         System.out.println(order_id);
     }
 
+    @Test
+    public void deleteOrder() throws Exception
+    {
+        String order_id = Employee.addOrder("uid","customer point of contact", "customer billing address", "products purchased", "date");
+        boolean result = Employee.deleteOrder("uid", order_id);
+        Assert.assertTrue(result);
+        result = Employee.deleteOrder("uid", "order_id");
+        Assert.assertFalse(result);
+    }
 }
