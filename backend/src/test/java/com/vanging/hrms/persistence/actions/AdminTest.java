@@ -24,7 +24,7 @@ public class AdminTest
     @Test
     public void login()
     {
-        Assert.assertFalse(Admin.login(123, "123"));
+        Assert.assertTrue(Admin.login("admin", "admin"));
     }
 
     @Test

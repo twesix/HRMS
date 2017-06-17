@@ -16,8 +16,6 @@ public class Login extends HttpServlet
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-
-        System.out.println("request");
         JSONResponse finalResponse = new JSONResponse();
 
         String id = request.getParameter("id");
@@ -29,43 +27,16 @@ public class Login extends HttpServlet
         }
         else
         {
-            long the_id;
-            try
+            if(Admin.login(id, password))
             {
-                the_id = (long)Float.parseFloat(id);
-                if(Admin.login(the_id, password))
-                {
-                    finalResponse.setStatus("ok");
-                }
-                else
-                {
-                    finalResponse.setStatus("wrong_password");
-                }
+                finalResponse.setStatus("ok");
             }
-            catch(Exception e)
+            else
             {
-                e.printStackTrace();
-                finalResponse.setStatus("bad_id");
+                finalResponse.setStatus("wrong_password");
             }
         }
-
-        response.addHeader("Access-Control-Allow-Origin", "*");
-
-        PrintWriter out = response.getWriter();
-        JSON.writeJSONString(out, finalResponse);
+        JSON.writeJSONString(response.getWriter(), finalResponse);
     }
 
-}
-
-class Message
-{
-    private String uid;
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
 }

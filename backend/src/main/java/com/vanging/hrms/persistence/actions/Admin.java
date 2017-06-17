@@ -9,12 +9,54 @@ import org.hibernate.Transaction;
 
 public class Admin
 {
-    public static boolean login(long id, String password)
+    static
+    {
+        addAdministrator("admin", "admin");
+    }
+    public static boolean addAdministrator(String id, String password)
+    {
+        Session session = Persistence.getSession();
+
+        Administrator administrator = new Administrator();
+
+        administrator.setId(id);
+        administrator.setPassword(password);
+
+        session.beginTransaction();
+        try
+        {
+            session.saveOrUpdate(administrator);
+            session.getTransaction().commit();
+            return true;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+            return false;
+        }
+    }
+
+    public static boolean login(String id, String password)
     {
         Session session = Persistence.getSession();
         Administrator administrator = session.get(Administrator.class, id);
 
-        return !(administrator == null || ! administrator.getPassword().equals(password));
+        if(administrator == null)
+        {
+            return false;
+        }
+        else
+        {
+            if(password.equals(administrator.getPassword()))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
     public static boolean addEmployee(String id, String password, String username, String usertype, String tel, float salary_per_hour, float salary_fixed, float salary_rate, int hour_limit)
