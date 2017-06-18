@@ -22,7 +22,7 @@
     </form>
 </template>
 <script>
-    import {get, date} from '../../../../vendor/utils.js';
+    import {get} from '../../../../vendor/utils.js';
     export default
     {
         data: function () {
@@ -36,7 +36,7 @@
             {
                 request_url: function()
                 {
-                    return`${this.$store.state.backend.base_url}/employee/add_timecard?pid=${this.project_id}&uid=${this.$store.state.user.uid}&start=${this.start_time}&end=${this.end_time}&date=${date()}`;
+                    return`${this.$store.state.backend.base_url}/employee/add_timecard?pid=${this.project_id}&uid=${this.$store.state.user.uid}&start=${this.start_time}&end=${this.end_time}`;
                 }
             },
         methods:

@@ -58,6 +58,12 @@ function datetime()
     return result;
 }
 
+function ms()
+{
+    const date = new Date();
+    return date.getTime();
+}
+
 function get(url)
 {
     return new Promise(function(resolve, reject)
@@ -88,4 +94,4 @@ function get(url)
 //         console.log(err);
 //     });
 
-export { date, datetime, get };
+export { date, datetime, get, ms };

@@ -7,6 +7,8 @@ import com.vanging.hrms.persistence.models.Profile;
 import com.vanging.hrms.persistence.models.Timecard;
 import org.hibernate.Session;
 
+import java.util.Date;
+
 public class Employee
 {
     public static boolean login(String id, String password)
@@ -169,7 +171,7 @@ public class Employee
         }
     }
 
-    public static boolean addTimecard(String pid, String uid, int start, int end, String date)
+    public static boolean addTimecard(String pid, String uid, int start, int end)
     {
         Session session = Persistence.getSession();
 
@@ -179,7 +181,7 @@ public class Employee
         timecard.setEmployee_id(uid);
         timecard.setStart_time(start);
         timecard.setEnd_time(end);
-        timecard.setDate(date);
+        timecard.setDate(new Date());
 
         try
         {

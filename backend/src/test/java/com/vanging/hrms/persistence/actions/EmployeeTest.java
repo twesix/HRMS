@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 public class EmployeeTest {
@@ -74,9 +76,9 @@ public class EmployeeTest {
     @Test
     public void addTimecard()
     {
-        boolean result = Employee.addTimecard("pid", "uid",4, 6, "123");
+        boolean result = Employee.addTimecard("pid", "uid",4, 6);
         Assert.assertTrue(result);
-        result = Employee.addTimecard("pid", "uid",4, 8, "123");
+        result = Employee.addTimecard("pid", "uid",4, 8);
         Assert.assertTrue(result);
     }
 }

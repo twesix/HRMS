@@ -38,18 +38,10 @@
                     login: async function()
                     {
                         console.log(this.request_url);
-                        let res;
-                        try
-                        {
-                            res = await get(this.request_url);
-                            res = JSON.parse(res);
-                        }
-                        catch(e)
-                        {
-                            console.log(e);
-                            alert('登录失败');
-                        }
-                        if(res.status === 'ok')
+                        let result = await get(this.request_url);
+                        result = JSON.parse(result);
+
+                        if(result.status === 'ok')
                         {
                             this.$store.commit('user/login', {uid: this.account});
                         }

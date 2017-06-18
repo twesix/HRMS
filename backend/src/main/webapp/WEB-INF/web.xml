@@ -43,12 +43,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>admin/admin_report</servlet-name>
-        <servlet-class>com.vanging.hrms.restful.admin.AdminReport</servlet-class>
+        <servlet-name>admin/worktime</servlet-name>
+        <servlet-class>com.vanging.hrms.restful.admin.Worktime</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>admin/admin_report</servlet-name>
-        <url-pattern>/admin/admin_report</url-pattern>
+        <servlet-name>admin/worktime</servlet-name>
+        <url-pattern>/admin/worktime</url-pattern>
     </servlet-mapping>
 
     <servlet>

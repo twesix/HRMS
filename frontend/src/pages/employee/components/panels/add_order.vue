@@ -32,7 +32,7 @@
     </form>
 </template>
 <script>
-    import {get} from '../../../../vendor/utils.js';
+    import {get, ms} from '../../../../vendor/utils.js';
     export default
     {
         data: function () {

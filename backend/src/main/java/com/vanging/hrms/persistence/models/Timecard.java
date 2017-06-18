@@ -1,12 +1,23 @@
 package com.vanging.hrms.persistence.models;
 
+import java.util.Date;
+
 public class Timecard
 {
+    private String id;
     private String project_id;
     private String employee_id;
-    private String date;
+    private Date date;
     private int start_time;
     private int end_time;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getEmployee_id() {
         return employee_id;
@@ -16,11 +27,11 @@ public class Timecard
         this.employee_id = employee_id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String datetime) {
+    public void setDate(Date datetime) {
         this.date = datetime;
     }
 

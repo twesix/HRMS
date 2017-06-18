@@ -106,4 +106,12 @@ public class AdminTest
                 );
         Assert.assertFalse(result);
     }
+
+    @Test
+    public void worktime()
+    {
+        Employee.addTimecard("123", "123", 2, 4);
+        int worktime = Admin.worktime("123", 1397702660303L, 1597702660303L);
+        Assert.assertEquals(2, worktime);
+    }
 }

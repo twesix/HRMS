@@ -4,8 +4,15 @@ import com.vanging.hrms.persistence.Persistence;
 import com.vanging.hrms.persistence.models.Administrator;
 import com.vanging.hrms.persistence.models.Auth;
 import com.vanging.hrms.persistence.models.Profile;
+import com.vanging.hrms.persistence.models.Timecard;
+import com.vanging.hrms.restful.response.SystemReport;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 public class Admin
 {
@@ -183,5 +190,32 @@ public class Admin
                 return false;
             }
         }
+    }
+
+    public static int worktime(String id, long start_num, long end_num)
+    {
+        int work_hours = 0;
+        Date start = new Date(start_num);
+        Date end = new Date(end_num);
+        System.out.println(start);
+        System.out.println(end);
+
+        String hql = "from Timecard where employee_id = :id and date between :the_start and :the_end";
+
+        Session session = Persistence.getSession();
+        Query query = session.createQuery(hql);
+        query.setParameter("id", id);
+        query.setParameter("the_start", start);
+        query.setParameter("the_end", end);
+        List<Timecard> timecards = query.list();
+        if(timecards == null)
+        {
+            return work_hours;
+        }
+        for(Timecard timecard : timecards)
+        {
+            work_hours += timecard.getEnd_time() - timecard.getStart_time();
+        }
+        return work_hours;
     }
 }

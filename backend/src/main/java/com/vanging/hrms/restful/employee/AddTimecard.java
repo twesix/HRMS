@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Date;
 
 public class AddTimecard extends HttpServlet
 {
@@ -27,9 +27,8 @@ public class AddTimecard extends HttpServlet
         String uid = request.getParameter("uid");
         String start_str = request.getParameter("start");
         String end_str = request.getParameter("end");
-        String date = request.getParameter("date");
 
-        if(pid == null || uid == null || start_str == null || end_str == null || date == null)
+        if(pid == null || uid == null || start_str == null || end_str == null)
         {
             finalResponse.setStatus("param_wrong");
         }
@@ -40,7 +39,7 @@ public class AddTimecard extends HttpServlet
                 int start = (int)(long)Float.parseFloat(start_str);
                 int end = (int)(long)Float.parseFloat(end_str);
 
-                if(Employee.addTimecard(pid, uid,start, end, date))
+                if(Employee.addTimecard(pid, uid,start, end))
                 {
                     finalResponse.setStatus("ok");
                 }
@@ -51,7 +50,7 @@ public class AddTimecard extends HttpServlet
             }
             catch(Exception e)
             {
-                finalResponse.setStatus("bad_int");
+                finalResponse.setStatus("bad_number");
             }
         }
 
