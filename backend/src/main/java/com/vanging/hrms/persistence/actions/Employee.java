@@ -7,6 +7,7 @@ import com.vanging.hrms.persistence.models.Profile;
 import com.vanging.hrms.persistence.models.Timecard;
 import org.hibernate.Session;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Employee
@@ -177,11 +178,15 @@ public class Employee
 
         Timecard timecard = new Timecard();
 
+        Date now = new Date();
+        Calendar calendar = Calendar.getInstance();
+
+        timecard.setId(pid + "___" +  uid + "___" + calendar.get(Calendar.YEAR) + calendar.get(Calendar.MONTH) + calendar.get(Calendar.DAY_OF_MONTH));
         timecard.setProject_id(pid);
         timecard.setEmployee_id(uid);
         timecard.setStart_time(start);
         timecard.setEnd_time(end);
-        timecard.setDate(new Date());
+        timecard.setDate(now);
 
         try
         {

@@ -4,13 +4,13 @@
 <hibernate-mapping package="com.vanging.hrms.persistence.models">
     <class name="Timecard" table="timecard">
         <id name="id" column="id" type="java.lang.String">
-            <generator class="uuid">
+            <generator class="assigned">
             </generator>
         </id>
 
         <property name="project_id" column="project_id" not-null="true" type="java.lang.String" />
         <property name="employee_id" column="employee_id" not-null="true" type="java.lang.String" />
-        <property name="date" column="datetime" not-null="true" type="java.util.Date" />
+        <property name="date" column="date" not-null="true" type="java.sql.Date" />
         <property name="start_time" column="start_time" not-null="true" type="int" />
         <property name="end_time" column="end_time" not-null="true" type="int" />
     </class>
