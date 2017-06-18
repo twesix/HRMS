@@ -3,7 +3,11 @@ const path=require('path');
 module.exports =
     {
         CommonsChunk: require('./plugin-list/CommonsChunk'),
-        Define: require('./plugin-list/Define'),
+        Define:
+            {
+                development: require('./plugin-list/Define.development'),
+                production: require('./plugin-list/Define.production'),
+            },
         Dll: require('./plugin-list/Dll'),
         DllReference: require('./plugin-list/DllReference'),
         ExtractText: require('./plugin-list/ExtractText'),

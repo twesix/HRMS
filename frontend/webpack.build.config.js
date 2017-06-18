@@ -11,7 +11,7 @@ module.exports=
                 plugins.CommonsChunk,
                 plugins.Provide,
                 plugins.DllReference,
-                plugins.Define
+                plugins.Define.production
             ]
                 .concat(plugins.HtmlWebpack)
     };
