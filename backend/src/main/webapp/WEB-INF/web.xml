@@ -43,15 +43,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>admin/worktime</servlet-name>
-        <servlet-class>com.vanging.hrms.restful.admin.Worktime</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>admin/worktime</servlet-name>
-        <url-pattern>/admin/worktime</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>admin/delete_employee</servlet-name>
         <servlet-class>com.vanging.hrms.restful.admin.DeleteEmployee</servlet-class>
     </servlet>
@@ -88,6 +79,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>admin/salary</servlet-name>
+        <servlet-class>com.vanging.hrms.restful.admin.Salary</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin/salary</servlet-name>
+        <url-pattern>/admin/salary</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>admin/settle_the_wage</servlet-name>
         <servlet-class>com.vanging.hrms.restful.admin.SettleTheWage</servlet-class>
     </servlet>
@@ -103,6 +103,15 @@
     <servlet-mapping>
         <servlet-name>admin/update_employee</servlet-name>
         <url-pattern>/admin/update_employee</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>admin/worktime</servlet-name>
+        <servlet-class>com.vanging.hrms.restful.admin.Worktime</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin/worktime</servlet-name>
+        <url-pattern>/admin/worktime</url-pattern>
     </servlet-mapping>
 
     <!--  ;;;;;;;;;;;; employee ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->

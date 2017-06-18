@@ -47,17 +47,8 @@
 </template>
 <script>
     const now = new Date();
-    const year_start = new Date();
-    year_start.setFullYear(now.getFullYear());
-    year_start.setMonth(0);
-    year_start.setDate(0);
-    year_start.setHours(0);
-    year_start.setMinutes(0);
-    year_start.setSeconds(0);
-    year_start.setMilliseconds(0);
-    console.log(year_start);
 
-    import {get} from '../../../../vendor/utils.js';
+    import {get, year_start} from '../../../../vendor/utils.js';
     export default
         {
             data: function ()

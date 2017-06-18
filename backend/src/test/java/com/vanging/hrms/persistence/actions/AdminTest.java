@@ -37,10 +37,10 @@ public class AdminTest
                         "中文名",
                         "hour",
                         "1234567890",
-                        0,
-                        0,
-                        0,
-                        0
+                        100,
+                        200,
+                        10,
+                        24
                 );
         Assert.assertTrue(result);
     }
@@ -113,5 +113,13 @@ public class AdminTest
         Employee.addTimecard("123", "123", 2, 4);
         int worktime = Admin.worktime("123", 1397702660303L, 1597702660303L);
         Assert.assertEquals(2, worktime);
+    }
+
+    @Test
+    public void salary() throws Exception
+    {
+        Employee.addTimecard("123", "123", 2, 4);
+        float salary = Admin.salary("123", 1397702660303L, 1597702660303L);
+        System.out.println(salary);
     }
 }

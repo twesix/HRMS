@@ -17,7 +17,7 @@
                 <tbody>
                 <tr>
                     <td>雇员id</td>
-                    <td>{{ uid }}</td>
+                    <td>{{ id }}</td>
                 </tr>
                 <tr>
                     <td>雇员姓名</td>
@@ -48,10 +48,6 @@
                     <td>{{ hour_limit }}</td>
                 </tr>
                 <tr>
-                    <td>剩余的年假或者病假</td>
-                    <td>{{ holiday_left }}</td>
-                </tr>
-                <tr>
                     <td>年初至今的收入</td>
                     <td>{{ income }}</td>
                 </tr>
@@ -61,42 +57,15 @@
     </div>
 </template>
 <script>
-    const reports =
-        {
-            '001':
-                {
-                    uid: '001',
-                    username: '孟政元',
-                    usertype: 'hour',
-                    tel: '12345678901',
-                    salary_per_hour: 100,
-                    salary_fixed: 10000,
-                    salary_rate: 10,
-                    hour_limit: 24,
-                    holiday_left: 10,
-                    income: 25000,
-                },
-            '002':
-                {
-                    uid: '002',
-                    username: '赵俊法',
-                    usertype: 'salary',
-                    tel: '12345678901',
-                    salary_per_hour: 200,
-                    salary_fixed: 15000,
-                    salary_rate: 20,
-                    hour_limit: 14,
-                    holiday_left: 4,
-                    income: 31000,
-                }
-        };
+    const now = new Date();
+
+    import {get, year_start} from '../../../../vendor/utils.js';
     export default
     {
         data: function ()
         {
             return {
                 id: null,
-                uid: null,
                 username: 0,
                 usertype: 0,
                 tel: 0,
@@ -104,32 +73,46 @@
                 salary_fixed: 0,
                 salary_rate: 0,
                 hour_limit: 0,
-                holiday_left: 0,
                 income: 0,
             };
         },
-        generated:
+        computed:
             {
-                request_url: function()
+                request_url_of_profile: function()
                 {
-                    return `${this.$store.state.backend.base_url}`;
+                    return`${this.$store.state.backend.base_url}/admin/query_employee?id=${this.id}`;
+                },
+                request_url_of_salary: function()
+                {
+                    return`${this.$store.state.backend.base_url}/admin/worktime?id=${this.id}&start=${year_start.getTime()}&end=${now.getTime()}`;
                 }
             },
         methods:
             {
-                submit: function()
+                submit: async function()
                 {
-                    const report = reports[this.id];
-                    if(report)
+                    let result = await get(this.request_url_of_salary);
+                    result = JSON.parse(result);
+                    if(result.status === 'ok')
                     {
-                        this.__display_report(report);
+                        this.imcome = result.message;
                     }
                     else
                     {
-                        alert('这个员工id不存在');
+                        alert('查询失败');
+                    }
+                    result = await get(this.request_url_of_profile);
+                    result = JSON.parse(result);
+                    if(result.status === 'ok')
+                    {
+                        this.__display_profile(result.message);
+                    }
+                    else
+                    {
+                        alert('查询失败');
                     }
                 },
-                __display_report(profile)
+                __display_profile(profile)
                 {
                     this.uid = profile.uid;
                     this.username = profile.username;
@@ -139,8 +122,6 @@
                     this.salary_fixed = profile.salary_fixed;
                     this.salary_rate = profile.salary_rate;
                     this.hour_limit = profile.hour_limit;
-                    this.holiday_left = profile.holiday_left;
-                    this.income = profile.income;
                 }
             }
     }

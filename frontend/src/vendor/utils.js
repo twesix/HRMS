@@ -85,13 +85,12 @@ function get(url)
     });
 }
 
-// get('//luoc.co')
-//     .then(function(res)
-//     {
-//         console.log(res);
-//     },function(err)
-//     {
-//         console.log(err);
-//     });
+const year_start = new Date();
+year_start.setMonth(0);
+year_start.setDate(0);
+year_start.setHours(0);
+year_start.setMinutes(0);
+year_start.setSeconds(0);
+year_start.setMilliseconds(0);
 
-export { date, datetime, get, ms };
+export { date, datetime, get, ms, year_start };

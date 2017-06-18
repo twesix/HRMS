@@ -218,4 +218,23 @@ public class Admin
         }
         return work_hours;
     }
+
+    public static float salary(String id, long start_num, long end_num)
+    {
+        float salary = 0;
+        Session session = Persistence.getSession();
+        Profile profile = session.get(Profile.class, id);
+        if(profile == null)
+        {
+            return salary;
+        }
+        String usertype = profile.getUsertype();
+        if(usertype.equals("hour"))
+        {
+            int worktime = Admin.worktime(id, start_num, end_num);
+            salary += worktime * profile.getSalary_per_hour();
+        }
+
+        return salary;
+    }
 }
