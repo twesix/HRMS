@@ -29,6 +29,10 @@
             {
                 submit: async function()
                 {
+                    if(!confirm('确定要执行此操作?'))
+                    {
+                        return ;
+                    }
                     console.log(this.request_url);
                     let result = await get(this.request_url);
                     console.log(result);

@@ -108,6 +108,10 @@
             {
                 update: async function()
                 {
+                    if(!confirm('确定要执行此操作?'))
+                    {
+                        return ;
+                    }
                     console.log(this.request_url_of_update);
 
                     console.log(this.request_url_of_update);
@@ -139,6 +143,10 @@
                 },
                 remove: async function()
                 {
+                    if(!confirm('确定要执行此操作?'))
+                    {
+                        return ;
+                    }
                     console.log(this.request_url_of_delete);
 
                     let result = await get(this.request_url_of_delete);

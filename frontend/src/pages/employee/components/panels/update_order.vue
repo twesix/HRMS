@@ -78,6 +78,10 @@
                 },
                 update: async function()
                 {
+                    if(!confirm('确定要执行此操作?'))
+                    {
+                        return ;
+                    }
                     let result = await get(this.request_url_of_update);
                     result = JSON.parse(result);
                     if(result.status === 'ok')

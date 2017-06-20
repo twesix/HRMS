@@ -40,6 +40,10 @@
             {
                 submit: async function()
                 {
+                    if(!confirm('确定要执行此操作?'))
+                    {
+                        return ;
+                    }
                     let result = await get(this.request_url);
                     result = JSON.parse(result);
 
